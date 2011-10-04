@@ -17,14 +17,25 @@ public class PdfServlet extends HttpServlet{
 		
 		byte[] pdf = Facade.getInstance().getPDF((String)request.getParameter("publicacao"));
 
+		sendMedia(response, pdf, "application/pdf");  
+	}
+
+	/**
+	 * @param response
+	 * @param pdf
+	 * @param contentType TODO
+	 * @throws IOException
+	 */
+	private void sendMedia(HttpServletResponse response, byte[] pdf, String contentType)
+			throws IOException {
 		response.setHeader("Cache-Control", "no-store");  
 		response.setHeader("Pragma", "no-cache");  
 		response.setDateHeader("Expires", 0);  
-		response.setContentType("application/pdf");
+		response.setContentType(contentType);
 
 		ServletOutputStream out = response.getOutputStream();
 		out.write(pdf );  
 		out.flush();  
-		out.close();  
+		out.close();
 	}
 }
