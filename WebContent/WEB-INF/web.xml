@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>RGMS</display-name>
+	<welcome-file-list>
+		<welcome-file>home.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>AdicionarMembro</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.AdicionarMembroServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdicionarMembro</servlet-name>
+		<url-pattern>/AdicionarMembro.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetalharMembro</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.DetalharMembroServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DetalharMembro</servlet-name>
+		<url-pattern>/DetalharMembro.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RemoverMembro</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.RemoverMembroServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RemoverMembro</servlet-name>
+		<url-pattern>/RemoverMembro.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarMembro</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.AlterarMembroServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarMembro</servlet-name>
+		<url-pattern>/AlterarMembro.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarDadosMembro</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.AlterarDadosMembroServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarDadosMembro</servlet-name>
+		<url-pattern>/AlterarDadosMembro.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Foto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.FotoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Foto</servlet-name>
+		<url-pattern>/Foto.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdicionarPublicacao</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.AdicionarPublicacaoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdicionarPublicacao</servlet-name>
+		<url-pattern>/AdicionarPublicacao.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>DetalharPublicacao</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.DetalharPublicacaoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DetalharPublicacao</servlet-name>
+		<url-pattern>/DetalharPublicacao.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RemoverPublicacao</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.RemoverPublicacaoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RemoverPublicacao</servlet-name>
+		<url-pattern>/RemoverPublicacao.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarPublicacao</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.AlterarPublicacaoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarPublicacao</servlet-name>
+		<url-pattern>/AlterarPublicacao.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarDadosPublicacao</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.AlterarDadosPublicacaoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarDadosPublicacao</servlet-name>
+		<url-pattern>/AlterarDadosPublicacao.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FiltrarMembros</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.FiltrarMembrosServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FiltrarMembros</servlet-name>
+		<url-pattern>/FiltrarMembros.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Pdf</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.PdfServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Pdf</servlet-name>
+		<url-pattern>/Pdf.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Bibtex</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.BibtexServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Bibtex</servlet-name>
+		<url-pattern>/Bibtex.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FiltrarPublicacoes</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.FiltrarPublicacoesServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FiltrarPublicacoes</servlet-name>
+		<url-pattern>/FiltrarPublicacoes.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FiltrarNoticias</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.FiltrarNoticiasServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FiltrarNoticias</servlet-name>
+		<url-pattern>/FiltrarNoticias.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AdicionarNoticia</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.AdicionarNoticiaServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdicionarNoticia</servlet-name>
+		<url-pattern>/AdicionarNoticia.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetalharNoticia</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.DetalharNoticiaServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DetalharNoticia</servlet-name>
+		<url-pattern>/DetalharNoticia.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarNoticia</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.AlterarNoticiaServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarNoticia</servlet-name>
+		<url-pattern>/AlterarNoticia.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>AlterarDadosNoticia</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.AlterarDadosNoticiasServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarDadosNoticia</servlet-name>
+		<url-pattern>/AlterarDadosNoticia.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RemoverNoticia</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.noticia.apresentacao.RemoverNoticiaServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RemoverNoticia</servlet-name>
+		<url-pattern>/RemoverNoticia.do</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<description>Informação de localização: língua</description>
+		<param-name>locale.language</param-name>
+		<param-value>pt</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Informação de localização: país</description>
+		<param-name>locale.country</param-name>
+		<param-value>BR</param-value>
+	</context-param>
+
+</web-app>

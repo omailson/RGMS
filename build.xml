@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="RGMS">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../../../Applications/eclipse ganymede j2ee"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath">
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/annotations-api.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/catalina-ant.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/catalina-ha.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/catalina.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/el-api.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/jasper-el.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/jasper-jdt.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/jasper.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/jsp-api.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/servlet-api.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../../../Library/apache-tomcat-6.0.26/lib/tomcat-i18n-ja.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/ant-contrib-1.0b2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ant-junit-1.6.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/antlr.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/asm-attrs.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/asm.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/aspectjrt.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-collections.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload-1.2.1-javadoc.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload-1.2.1-sources.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io-1.3.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/dom4j.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ejb3-persistence.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-annotations.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-cglib-repack-2.1_3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-commons-annotations.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-core.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate-validator-4.0.0.Beta1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hibernate3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/iText-2.1.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javassist-3.4.GA.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javassist.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jta-1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jta.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/junit-3.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/junit.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.eclipse.nebula.widgets.calendarcombo-1.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.eclipse.nebula.widgets.cdatetime.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.eclipse.nebula.widgets.formattedtext_1.0.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/postgresql-8.3-604.jdbc3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.5.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-log4j12.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="AspectJ Runtime Library.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.aspectj.runtime_1.6.6.20090930185500/aspectjrt.jar"/>
+    </path>
+    <path id="RGMS.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v6.0 [Apache Tomcat v6.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="AspectJ Runtime Library.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src.aspects/login" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="RGMS.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src.aspects/login"/>
+            <classpath refid="RGMS.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="GerarBanco">
+        <java classname="br.ufpe.cin.rgms.util.GerarBanco" failonerror="true" fork="yes">
+            <classpath refid="RGMS.classpath"/>
+        </java>
+    </target>
+</project>

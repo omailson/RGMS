@@ -1,0 +1,59 @@
+package br.ufpe.cin.rgms.publicacao.modelo;
+
+import java.util.List;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+
+import br.ufpe.cin.rgms.membro.modelo.Membro;
+
+@Entity
+public class PublicacaoPosGraduacao extends Publicacao {
+
+	private String universidade;
+	
+	private String mesDefesa;
+	
+	private Nivel nivel;
+
+	public PublicacaoPosGraduacao() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public PublicacaoPosGraduacao(List<Membro> autores,
+			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf,
+			String universidade, String mes, Nivel nivel, String tipo) {
+		super(autores, autoresNaoMembros, titulo, ano, pdf, tipo);
+		
+		this.setUniversidade(universidade);
+		this.setMes(mes);
+		this.setNivel(nivel);
+	}
+
+	@Basic
+	public String getUniversidade() {
+		return universidade;
+	}
+
+	public void setUniversidade(String universidade) {
+		this.universidade = universidade;
+	}
+
+	@Basic
+	public String getMes() {
+		return mesDefesa;
+	}
+
+	public void setMes(String mes) {
+		this.mesDefesa = mes;
+	}
+	
+	@Basic
+	public Nivel getNivel() {
+		return nivel;
+	}
+	@Basic
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+}
