@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
+<%@page import="br.ufpe.cin.rgms.membro.modelo.Vinculo"%>
 <%@page import="br.ufpe.cin.rgms.membro.modelo.Membro"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ufpe.cin.rgms.Facade"%>
@@ -134,13 +135,13 @@
 			if(membroAnterior == null || !membroAnterior.getTipo().equals(membro.getTipo())){
 				out.print("<tr>");
 				
-				if(membro.getTipo().equals(Membro.ESTUDANTE)){
+				if(membro.getTipo().equals(Vinculo.ESTUDANTE)){
 					out.print("<td><br><h3>"+Properties.getProperty(this.getServletContext(),"estudantes")+"</h3></td>");
 				}
-				else if(membro.getTipo().equals(Membro.PESQUISADOR)){
+				else if(membro.getTipo().equals(Vinculo.PESQUISADOR)){
 					out.print("<td><br><h3>"+Properties.getProperty(this.getServletContext(),"pesquisadores")+"</h3></td>");
 				}
-				else if(membro.getTipo().equals(Membro.OUTROS)){
+				else if(membro.getTipo().equals(Vinculo.OUTROS)){
 					out.print("<td><br><h3>"+Properties.getProperty(this.getServletContext(),"outros")+"</h3></td>");
 				}
 				

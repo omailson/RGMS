@@ -17,39 +17,17 @@ import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
 public class Membro extends AbstractBusinessEntity implements
 		Comparable<Membro> {
-	/**
-	 * Nome Tipo (estudante, pesquisador...) se for estudante, informar
-	 * orientador e co-orientador (caso se aplique) Departamento/Universidade
-	 * e-mail telefone de contato website Cidade / Pa’s Foto Ativo / Former
-	 * member
-	 */
-	public final static String ESTUDANTE = "Estudante";
-
-	public final static String PESQUISADOR = "Pesquisador";
-
-	public final static String OUTROS = "Outros";
-
 	protected String nome;
 
 	protected String sobrenome;
 
-	protected String tipo;
-
-	protected String departamento;
-
-	protected String universidade;
-
-	protected String telefone;
-
-	protected String email;
-
-	protected String website;
+	protected Contato contato = new Contato();
 
 	protected String cidade;
 
 	protected String pais;
 
-	protected String situacao;
+	protected Vinculo vinculo = new Vinculo();
 
 	protected List<Publicacao> publicacoes;
 
@@ -101,56 +79,56 @@ public class Membro extends AbstractBusinessEntity implements
 
 	@Basic
 	public String getTipo() {
-		return tipo;
+		return vinculo.getTipo();
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo = tipo;
+		this.vinculo.setTipo(tipo);
 	}
 
 	@Basic
 	public String getDepartamento() {
-		return departamento;
+		return vinculo.getDepartamento();
 	}
 
 	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
+		this.vinculo.setDepartamento(departamento);
 	}
 
 	@Basic
 	public String getUniversidade() {
-		return universidade;
+		return vinculo.getUniversidade();
 	}
 
 	public void setUniversidade(String universidade) {
-		this.universidade = universidade;
+		this.vinculo.setUniversidade(universidade);
 	}
 
 	@Basic
 	public String getTelefone() {
-		return telefone;
+		return contato.getTelefone();
 	}
 
 	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+		this.contato.setTelefone(telefone);
 	}
 
 	@Basic
 	public String getEmail() {
-		return email;
+		return contato.getEmail();
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.contato.setEmail(email);
 	}
 
 	@Basic
 	public String getWebsite() {
-		return website;
+		return contato.getWebsite();
 	}
 
 	public void setWebsite(String website) {
-		this.website = website;
+		this.contato.setWebsite(website);
 	}
 
 	@Basic
@@ -173,11 +151,11 @@ public class Membro extends AbstractBusinessEntity implements
 
 	@Basic
 	public String getSituacao() {
-		return situacao;
+		return vinculo.getSituacao();
 	}
 
 	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+		this.vinculo.setSituacao(situacao);
 	}
 
 	@ManyToMany
@@ -206,7 +184,7 @@ public class Membro extends AbstractBusinessEntity implements
 		if (obj instanceof Membro) {
 			Membro membro = (Membro) obj;
 
-			if (this.email != null && this.email.equals(membro.email)) {
+			if (this.contato.getEmail() != null && this.contato.getEmail().equals(membro.contato.getEmail())) {
 				equals = true;
 			}
 		}
