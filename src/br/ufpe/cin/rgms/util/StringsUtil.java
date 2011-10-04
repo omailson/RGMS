@@ -52,6 +52,10 @@ public class StringsUtil {
 		return retorno;
 	}
 	
+	public static boolean validar(String value) {
+		return (value != null && !value.equals(""));
+	}
+	
 	  private static final Pattern NONLATIN = Pattern.compile("[^\\w-]");
 	  private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
 
