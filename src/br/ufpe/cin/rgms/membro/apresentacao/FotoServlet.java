@@ -10,7 +10,8 @@ import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.MediaServlet;
 
 public class FotoServlet extends MediaServlet {
-	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, 
 			HttpServletResponse response)

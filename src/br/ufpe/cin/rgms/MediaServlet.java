@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 public abstract class MediaServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	public MediaServlet() {
 		super();
@@ -15,7 +16,7 @@ public abstract class MediaServlet extends HttpServlet {
 	/**
 	 * @param response
 	 * @param foto
-	 * @param contentType TODO
+	 * @param contentType
 	 * @throws IOException
 	 */
 	protected void sendMedia(HttpServletResponse response, 
