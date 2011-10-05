@@ -70,6 +70,8 @@ public abstract class AbstractServlet extends HttpServlet {
 		}
 	}
 
+	public abstract void logic() throws RGMSException, FileUploadException;
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// Create a factory for disk-based file items
 		FileItemFactory factory = new DiskFileItemFactory();
@@ -101,7 +103,4 @@ public abstract class AbstractServlet extends HttpServlet {
 		view.forward(request, response);
 	}
 
-
-
-	public abstract void logic() throws RGMSException, FileUploadException;
 }
