@@ -25,12 +25,14 @@ public class Bibtex {
 	Map<String, String> propriedades;
 	String tipoBibtex = "";
 	String tituloSlug = "";
+	Publicacao publicacao;
 
 	public String getTituloSlug() {
 		return tituloSlug;
 	}
 
 	public Bibtex(Publicacao publicacao) {
+		this.publicacao = publicacao;
 		String tipo = publicacao.getTipo();
 
 		propriedades = new HashMap<String, String>();
@@ -73,26 +75,38 @@ public class Bibtex {
 		propriedades.put("author", membrosBuilder.toString());
 
 		if (tipo.equals(MapeamentoTipo.CONFERENCIA)) {
-			tipoBibtex = "@inproceedings";
-			ArtigoConferencia publicacaoConferecencia = (ArtigoConferencia) publicacao;
-			propriedades.put("booktitle", publicacaoConferecencia.getConferencia());
-			propriedades.put("pages", publicacaoConferecencia.getPaginas());
-			propriedades.put("month", publicacaoConferecencia.getMes());
+			propriedadesConferencia();
 		} else if (tipo.equals(MapeamentoTipo.PERIODICO)) {
-			tipoBibtex = "@article";
-			ArtigoPeriodico publicacaoPeriodico = (ArtigoPeriodico) publicacao;
-			propriedades.put("journal", publicacaoPeriodico.getJornal());
-			propriedades.put("volume", publicacaoPeriodico.getVolume());
-			propriedades.put("pages", publicacaoPeriodico.getPaginas());
-			propriedades.put("number", publicacaoPeriodico.getNumero());
+			propriedadesPeriodico();
 		} else if (tipo.equals(MapeamentoTipo.POSGRADUACAO)) {
-			PublicacaoPosGraduacao publicacaoPos = (PublicacaoPosGraduacao) publicacao;
-			propriedades.put("month", publicacaoPos.getMes());
-			if (publicacaoPos.getNivel().equals(Nivel.MESTRADO)) {
-				tipoBibtex = "@mastersthesis";
-			} else {
-				tipoBibtex = "@phdthesis";
-			}
+			propriedadesPosGraduacao();
+		}
+	}
+
+	private void propriedadesConferencia() {
+		tipoBibtex = "@inproceedings";
+		ArtigoConferencia publicacaoConferecencia = (ArtigoConferencia) publicacao;
+		propriedades.put("booktitle", publicacaoConferecencia.getConferencia());
+		propriedades.put("pages", publicacaoConferecencia.getPaginas());
+		propriedades.put("month", publicacaoConferecencia.getMes());
+	}
+
+	private void propriedadesPeriodico() {
+		tipoBibtex = "@article";
+		ArtigoPeriodico publicacaoPeriodico = (ArtigoPeriodico) publicacao;
+		propriedades.put("journal", publicacaoPeriodico.getJornal());
+		propriedades.put("volume", publicacaoPeriodico.getVolume());
+		propriedades.put("pages", publicacaoPeriodico.getPaginas());
+		propriedades.put("number", publicacaoPeriodico.getNumero());
+	}
+
+	private void propriedadesPosGraduacao() {
+		PublicacaoPosGraduacao publicacaoPos = (PublicacaoPosGraduacao) publicacao;
+		propriedades.put("month", publicacaoPos.getMes());
+		if (publicacaoPos.getNivel().equals(Nivel.MESTRADO)) {
+			tipoBibtex = "@mastersthesis";
+		} else {
+			tipoBibtex = "@phdthesis";
 		}
 	}
 	

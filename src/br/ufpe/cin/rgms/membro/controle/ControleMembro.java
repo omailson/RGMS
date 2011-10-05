@@ -9,6 +9,7 @@ import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.membro.persistencia.DaoMembro;
 import br.ufpe.cin.rgms.util.StringsUtil;
+import br.ufpe.cin.rgms.util.Validation;
 
 public class ControleMembro extends Controle<Membro,DaoMembro> {
 
@@ -29,21 +30,8 @@ public class ControleMembro extends Controle<Membro,DaoMembro> {
 	}
 
 	protected void validar(Membro objeto) throws RGMSException {
-		if(!StringsUtil.validar(objeto.getNome()) ||
-				!StringsUtil.validar(objeto.getSobrenome()) ||
-				!StringsUtil.validar(objeto.getTipo()) ||
-
-				!StringsUtil.validar(objeto.getDepartamento()) ||
-				!StringsUtil.validar(objeto.getUniversidade()) ||
-				!StringsUtil.validar(objeto.getTelefone()) ||
-				!StringsUtil.validar(objeto.getEmail()) ||
-
-
-				!StringsUtil.validar(objeto.getWebsite()) ||
-				!StringsUtil.validar(objeto.getCidade()) ||
-				!StringsUtil.validar(objeto.getPais()) ||
-				!StringsUtil.validar(objeto.getSituacao()))
-		{
+		Validation<Membro> validation = new Validation<Membro>(objeto);
+		if (!validation.executeValidations()) {
 			throw new RGMSException("Dados invalidos na insercao de membro.");
 		}
 	}
