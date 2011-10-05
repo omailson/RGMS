@@ -17,15 +17,11 @@ import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
 public class Membro extends AbstractBusinessEntity implements
 		Comparable<Membro> {
-	protected String nome;
-
-	protected String sobrenome;
+	protected Nome nome = new Nome();
 
 	protected Contato contato = new Contato();
 
-	protected String cidade;
-
-	protected String pais;
+	protected Endereco endereco = new Endereco();
 
 	protected Vinculo vinculo = new Vinculo();
 
@@ -61,20 +57,24 @@ public class Membro extends AbstractBusinessEntity implements
 
 	@Basic
 	public String getNome() {
-		return nome;
+		return nome.getNome();
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome.setNome(nome);
 	}
 
 	@Basic
 	public String getSobrenome() {
-		return sobrenome;
+		return nome.getSobrenome();
 	}
 
 	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
+		this.nome.setSobrenome(sobrenome);
+	}
+	
+	public String nomeCompleto(){
+		return this.nome.nomeCompleto();
 	}
 
 	@Basic
@@ -133,20 +133,20 @@ public class Membro extends AbstractBusinessEntity implements
 
 	@Basic
 	public String getCidade() {
-		return cidade;
+		return endereco.getCidade();
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.endereco.setCidade(cidade);
 	}
 
 	@Basic
 	public String getPais() {
-		return pais;
+		return endereco.getPais();
 	}
 
 	public void setPais(String pais) {
-		this.pais = pais;
+		this.endereco.setPais(pais);
 	}
 
 	@Basic
