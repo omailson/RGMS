@@ -1,6 +1,5 @@
 package br.ufpe.cin.rgms.publicacao.modelo;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -15,6 +14,8 @@ import org.hibernate.annotations.CollectionOfElements;
 
 import br.ufpe.cin.rgms.base.AbstractBusinessEntity;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.publicacao.apresentacao.SFLMembro;
+import br.ufpe.cin.rgms.publicacao.apresentacao.SFLString;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames={"titulo"})})
@@ -118,52 +119,12 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 		return this.getTitulo().compareTo(publication.getTitulo());
 	}
 	
-	public String listaAutoresMembros(){
-		String nomes="";
-		if(this.autores.isEmpty()){
-			nomes=null;
-		}
-		else{
-			if(this.autores.size()>1){
-				Iterator it = autores.iterator();
-				while(it.hasNext()){
-					Membro member = (Membro)it.next();
-					nomes = nomes+member.getNome()+" "+member.getSobrenome()+", ";
-				}
-				nomes = nomes.substring(0, nomes.length()-2);
-			}
-			else{
-				Membro m = this.autores.get(0);
-				nomes = m.getNome()+" "+m.getSobrenome();	
-			}						
-		}
-		return nomes;
-	}
-	
-	public String listaAutoresNaoMembros(){
-		String nomes="";
-		if(this.autoresNaoMembros.isEmpty()){
-			nomes = null;
-		}
-		else{
-			if(this.autoresNaoMembros.size()>1){
-				Iterator it = autoresNaoMembros.iterator();
-				while(it.hasNext()){
-					String notMember = (String)it.next();
-					nomes = nomes+notMember+", ";
-				}
-				nomes = nomes.substring(0, nomes.length()-2);
-			}
-			else{
-				nomes = this.autoresNaoMembros.get(0);
-			}						
-		}
-		return nomes;
-	}
-	
 	public String referencia(){
-		String autoresMembros = (this.listaAutoresMembros()!=null)? this.listaAutoresMembros()+" ": "";
-		String autoresNaoMembros = (this.listaAutoresNaoMembros()!=null)? this.listaAutoresNaoMembros():"";
+		
+		String listaAutoresMembros = new SFLMembro().listaAutores(autores);
+		String listaAutoresNaoMembros = new SFLString().listaAutores(autoresNaoMembros);
+		String autoresMembros = (listaAutoresMembros!=null)? listaAutoresMembros+" ": "";
+		String autoresNaoMembros = (listaAutoresNaoMembros!=null)? listaAutoresNaoMembros:"";
 	
 		return autoresMembros+","+autoresNaoMembros+"."+this.getTitulo()+"."+this.getAno()+".";
 	}

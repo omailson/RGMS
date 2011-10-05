@@ -10,50 +10,33 @@ public class ListGenerator {
 
 	public static List<Membro> createListaMembro(String autoresMembros){
 		List<Membro> lista = new ArrayList<Membro>();
-		String nome="";
-		for(int x=0; x<autoresMembros.length(); x++){
-			if(autoresMembros.charAt(x)!=','){
-				nome = nome+autoresMembros.charAt(x);		
-			}
-			if((nome.length()==autoresMembros.length())||(autoresMembros.charAt(x)==',')){
-				if(autoresMembros.charAt(x)==','){
-					nome = nome.substring(0, x-1);	
-				}
-				List<Membro> membros = Facade.getInstance().getMembros();
-				int y=0;
-				String name="";
-				while(y<membros.size()){
+		String nome = "", name = "";
 
-					name = membros.get(y).getNome()+" "+membros.get(y).getSobrenome();
-					if(nome.equals(name)){
-						lista.add(membros.get(y));
-					}			
-					y++;
-				}
-				nome="";
-			}
+		String[] arrayAutoresMembros = autoresMembros.split(",");
+		List<Membro> membros = Facade.getInstance().getMembros();
 
+		for(int i = 0; i < arrayAutoresMembros.length; i++){
+			nome = arrayAutoresMembros[i];
+
+			for(int y = 0; y < membros.size(); y++){
+				name = membros.get(y).nomeCompleto();
+				if(nome.equals(name)){
+					lista.add(membros.get(y));
+				}
+			}
 		}
+
 		return lista;
-
-
 	}
 
 	public static List<String> createListaNaoMembro(String autoresNaoMembros){
 		List<String> lista = new ArrayList<String>();
-		String nome="";
-		for(int x=0; x<autoresNaoMembros.length()-1;x++){
-			if(autoresNaoMembros.charAt(x)!=','){
-				nome = nome+autoresNaoMembros.charAt(x);				
-			}
-			if((nome.length()==autoresNaoMembros.length())||(autoresNaoMembros.charAt(x)==',')){
-				if(autoresNaoMembros.charAt(x)==','){
-					nome = nome.substring(0, x-1);	
-				}
-				lista.add(nome);
-				nome = "";
-			}	
+		String[] arrayAutoresNaoMembros = autoresNaoMembros.split(",");
+
+		for(int i = 0; i < arrayAutoresNaoMembros.length; i++){
+			lista.add(arrayAutoresNaoMembros[i]);
 		}
+
 		return lista;			
 	}
 }
