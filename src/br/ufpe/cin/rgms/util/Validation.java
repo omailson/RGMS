@@ -1,6 +1,7 @@
 package br.ufpe.cin.rgms.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -18,10 +19,20 @@ public class Validation<T> {
 
 	public boolean executeValidations() {
 		try {
+			// Carrega as propriedades
 			Properties property = new Properties();
-			property.load(this.object.getClass().getResourceAsStream(
-					String.format("%sValidation.properties", this.object
-							.getClass().getSimpleName())));
+			Class<?> objClass = this.object.getClass();
+
+			// Pega as propriedades da classe atual e de todas as superclasses
+			while (!objClass.equals(Object.class)) {
+				// O nome do arquivo deve ser no formato ClasseValidation.properties
+				InputStream classIs =  objClass.getResourceAsStream(String.format("%sValidation.properties", objClass.getSimpleName()));
+				if (classIs != null) // Verifica se existe regra para este arquivo
+					property.load(classIs);
+
+				objClass = objClass.getSuperclass();
+			}
+
 			Enumeration<Object> enums = property.keys();
 			while (enums.hasMoreElements()) {
 				Object key = enums.nextElement();
@@ -31,13 +42,14 @@ public class Validation<T> {
 				if (matcher.find()) {
 					String className = matcher.group(1);
 
-					Class c = Class.forName(className);
+					Class<?> c = Class.forName(className);
 					IValidator validator = (IValidator) c.newInstance();
 					String campo = (String) this.object.getClass()
 							.getMethod(String.format("get%s", key.toString()))
 							.invoke(this.object);
 
-					return validator.validate(campo);
+					if (!validator.validate(campo))
+						return false;
 				}
 			}
 
