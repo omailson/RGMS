@@ -33,23 +33,29 @@ public class Validation<T> {
 				objClass = objClass.getSuperclass();
 			}
 
+			// Itera pela lista de validations
 			Enumeration<Object> enums = property.keys();
 			while (enums.hasMoreElements()) {
 				Object key = enums.nextElement();
-				String validationClass = (String) property.get(key);
 				Pattern pattern = Pattern.compile("([a-zA-Z_.]+)$");
-				Matcher matcher = pattern.matcher(validationClass);
-				if (matcher.find()) {
-					String className = matcher.group(1);
 
-					Class<?> c = Class.forName(className);
-					IValidator validator = (IValidator) c.newInstance();
-					String campo = (String) this.object.getClass()
-							.getMethod(String.format("get%s", key.toString()))
-							.invoke(this.object);
+				// Um campo pode ter mais de um Validator.
+				// Os Validators sao separados por virgulas.
+				String[] validationClasses = ((String) property.get(key)).split(",");
+				for (String validationClass : validationClasses) {
+					Matcher matcher = pattern.matcher(validationClass);
+					if (matcher.find()) {
+						String className = matcher.group(1);
 
-					if (!validator.validate(campo))
-						return false;
+						Class<?> c = Class.forName(className);
+						IValidator validator = (IValidator) c.newInstance();
+						String campo = (String) this.object.getClass()
+								.getMethod(String.format("get%s", key.toString()))
+								.invoke(this.object);
+
+						if (!validator.validate(campo))
+							return false;
+					}
 				}
 			}
 
