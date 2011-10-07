@@ -31,7 +31,7 @@ public class ControleMembro extends Controle<Membro,DaoMembro> {
 
 	protected void validar(Membro objeto) throws RGMSException {
 		Validation<Membro> validation = new Validation<Membro>(objeto);
-		if (!validation.executeValidations()) {
+		if (!validation.isValid()) {
 			throw new RGMSException("Dados invalidos na insercao de membro.");
 		}
 	}

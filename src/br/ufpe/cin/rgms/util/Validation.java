@@ -17,7 +17,7 @@ public class Validation<T> {
 		this.object = object;
 	}
 
-	public boolean executeValidations() {
+	public boolean isValid() {
 		try {
 			// Carrega as propriedades
 			Properties property = new Properties();
