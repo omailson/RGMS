@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.ufpe.cin.rgms.base.IValidator;
+import br.ufpe.cin.rgms.base.ValidationException;
 
 public class Validation<T> {
 	private T object;
@@ -18,6 +19,16 @@ public class Validation<T> {
 	}
 
 	public boolean isValid() {
+		try {
+			this.executeValidations();
+
+			return true;
+		} catch (ValidationException e) {
+			return false;
+		}
+	}
+
+	public boolean executeValidations() throws ValidationException {
 		try {
 			// Carrega as propriedades
 			Properties property = new Properties();
@@ -53,8 +64,9 @@ public class Validation<T> {
 								.getMethod(String.format("get%s", key.toString()))
 								.invoke(this.object);
 
-						if (!validator.validate(campo))
-							return false;
+						if (!validator.validate(campo)) {
+							throw new ValidationException(this.object.getClass(), key.toString(), campo, validator);
+						}
 					}
 				}
 			}
