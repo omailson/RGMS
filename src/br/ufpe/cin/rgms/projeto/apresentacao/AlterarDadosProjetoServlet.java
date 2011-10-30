@@ -15,17 +15,18 @@ import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.util.Properties;
 
 public class AlterarDadosProjetoServlet extends AbstractServlet{
+	private static final long serialVersionUID = 1L;
 
 		@Override
 		public void logic() throws RGMSException, FileUploadException {
 			String nome = this.formfields.get("nome");
 			String descricao = this.formfields.get("descricao");
-			String nomeOriginal = this.formfields.get("nomeloriginal");
+			String nomeOriginal = this.formfields.get("nomeoriginal");
 
 			Projeto projetoParaAlterar = Facade.getInstance().getProjeto(nomeOriginal);
 
 			if (!projetoParaAlterar.getNome().equals(nome) && Facade.getInstance().getProjeto(nome) != null) {
-				request.setAttribute("membrostatus", Properties.getProperty(servletContext, "nome_ja_cadastrado"));
+				request.setAttribute("projetostatus", Properties.getProperty(servletContext, "nome_ja_cadastrado"));
 			} else {
 				projetoParaAlterar.setNome(nome);
 				projetoParaAlterar.setDescricao(descricao);

@@ -4,8 +4,10 @@
 <%@page import="br.ufpe.cin.rgms.membro.modelo.Membro"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
-<%@page import="br.ufpe.cin.rgms.membro.modelo.Estudante"%><html>
+<%@page import="br.ufpe.cin.rgms.membro.modelo.Estudante"%>
 <%@page import="br.ufpe.cin.rgms.publicacao.modelo.Publicacao"%>
+
+<html>
 
 <% ServletContext servletContext = getServletContext(); %>
 

@@ -80,7 +80,7 @@
 
 	<servlet>
 		<servlet-name>AlterarDadosProjeto</servlet-name>
-		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.AlterarDadosProjetoServlet</servlet-class>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.AlterarDadosProjetoServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -88,6 +88,45 @@
 		<url-pattern>/AlterarDadosProjeto.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>DetalharProjeto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.DetalharProjetoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DetalharProjeto</servlet-name>
+		<url-pattern>/DetalharProjeto.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>RemoverProjeto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.RemoverProjetoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RemoverProjeto</servlet-name>
+		<url-pattern>/RemoverProjeto.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AlterarProjeto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.AlterarProjetoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarProjeto</servlet-name>
+		<url-pattern>/AlterarProjeto.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FiltrarProjetos</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.FiltrarProjetosServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FiltrarProjetos</servlet-name>
+		<url-pattern>/FiltrarProjetos.do</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>AdicionarPublicacao</servlet-name>

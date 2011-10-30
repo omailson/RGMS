@@ -49,7 +49,7 @@
 			 %>
 <div id="filter">
 
-<FORM name="filtrarprojeto" action="FiltrarProjeto.do" method="POST">
+<FORM name="filtrarprojeto" action="FiltrarProjetos.do" method="POST">
 <p><LABEL for="nome"><%out.println(Properties.getProperty(this.getServletContext(),"nome"));%></LABEL> <INPUT
 	onkeypress="return noenter();" type="text" name="nome" size="29"
 	value="<%
