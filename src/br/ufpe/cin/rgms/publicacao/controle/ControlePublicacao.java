@@ -37,12 +37,12 @@ public class ControlePublicacao extends Controle<Publicacao,DaoPublicacao> {
 	}
 
 	protected void validar(Publicacao objeto) throws RGMSException {
-		if(objeto.getTitulo() == null || objeto.getTitulo().equals("") ||
-				objeto.getAno() == null || objeto.getAno().equals("") ||
-				objeto.getAutores() == null ||objeto.getAutoresNaoMembros() == null)
-		{
-			throw new RGMSException("Dados invalidos na insercao de publicacao.");
-		}
+//		if(objeto.getTitulo() == null || objeto.getTitulo().equals("") ||
+//				objeto.getAno() == null || objeto.getAno().equals("") ||
+//				objeto.getAutores() == null ||objeto.getAutoresNaoMembros() == null)
+//		{
+//			throw new RGMSException("Dados invalidos na insercao de publicacao.");
+//		}
 	}
 
 	public Publicacao getPublicacao(int idPublicacao) {

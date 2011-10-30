@@ -55,6 +55,8 @@ public abstract class AbstractServlet extends HttpServlet {
 			ServletFileUpload upload) throws FileUploadException {
 		List<FileItem> items = upload.parseRequest(request);
 
+		this.request = request;
+		
 		// Process the uploaded items
 		Iterator<FileItem> iter = items.iterator();
 
@@ -92,15 +94,20 @@ public abstract class AbstractServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
-			request.setAttribute("publicacaostatus", Properties.getProperty(servletContext, "erro_bd"));
+			RGMSException();
 		} catch (FileUploadException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 
-			request.setAttribute("publicacaostatus", Properties.getProperty(servletContext, "erro_upload"));
+			FileUploadException();
+			
 		}
-		RequestDispatcher view = request.getRequestDispatcher("publicacaostatus.jsp");
-		view.forward(request, response);
+		dispatcher(response);
+		
 	}
+	
+	public abstract void dispatcher(HttpServletResponse response) throws ServletException, IOException;
+	public abstract void RGMSException();
+	public abstract void FileUploadException();
 
 }

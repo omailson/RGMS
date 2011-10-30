@@ -34,6 +34,7 @@
 		<div id="menulinks">
 			<a href="home.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"home"));%></a>
 			<a href="membros.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"membros"));%></a>
+			<a href="projetos.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"projetos"));%></a>
 			<a class="active" href="publicacoes.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"publicacoes"));%></a>
 			<a href="contato.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"contato"));%></a>
 		</div>

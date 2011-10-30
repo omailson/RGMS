@@ -69,6 +69,27 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>AdicionarProjeto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.projeto.apresentacao.AdicionarProjetoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdicionarProjeto</servlet-name>
+		<url-pattern>/AdicionarProjeto.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AlterarDadosProjeto</servlet-name>
+		<servlet-class>br.ufpe.cin.rgms.membro.apresentacao.AlterarDadosProjetoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AlterarDadosProjeto</servlet-name>
+		<url-pattern>/AlterarDadosProjeto.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
 		<servlet-name>AdicionarPublicacao</servlet-name>
 		<servlet-class>br.ufpe.cin.rgms.publicacao.apresentacao.AdicionarPublicacaoServlet</servlet-class>
 	</servlet>

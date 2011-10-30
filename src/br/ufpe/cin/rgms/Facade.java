@@ -6,6 +6,8 @@ import java.util.List;
 import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.controle.ControleMembro;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.projeto.controle.ControleProjeto;
+import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.publicacao.controle.ControlePublicacao;
 import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 
@@ -15,10 +17,12 @@ public class Facade {
 	
 	private ControleMembro controleMembro;
 	private ControlePublicacao controlePublicacao;
+	private ControleProjeto controleProjeto;
 	
 	private Facade() {
 		this.controleMembro = new ControleMembro();
 		this.controlePublicacao = new ControlePublicacao();
+		this.controleProjeto = new ControleProjeto();
 	}
 	
 	public static Facade getInstance(){
@@ -27,6 +31,26 @@ public class Facade {
 		}
 		
 		return singleton;
+	}
+	
+	public Projeto getProjeto(String nome){
+		return controleProjeto.getProjeto(nome);
+	}
+	
+	public void inserirProjeto(Projeto projeto) throws RGMSException{
+		this.controleProjeto.inserir(projeto);
+	}
+	
+	public void removerProjeto(Projeto projeto){
+		this.controleProjeto.remover(projeto);
+	}
+	
+	public List<Projeto> getProjetos(){
+		return controleProjeto.listar();
+	}
+	
+	public void alterarProjeto(Projeto projeto) throws RGMSException{
+		this.controleProjeto.alterar(projeto);
 	}
 
 	public Membro getMembro(String email) {

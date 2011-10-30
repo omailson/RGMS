@@ -1,6 +1,11 @@
 package br.ufpe.cin.rgms.publicacao.apresentacao;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileUploadException;
 
@@ -92,6 +97,22 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 
 		request.setAttribute("publicacaostatus", Properties.getProperty(servletContext, "publicaco_alt_suc"));
 		
+	}
+	
+	@Override
+	public void dispatcher(HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("publicacaostatus.jsp");
+		view.forward(request, response);		
+	}
+
+	@Override
+	public void RGMSException() {
+		request.setAttribute("publicacaostatus", Properties.getProperty(servletContext, "erro_bd"));		
+	}
+
+	@Override
+	public void FileUploadException() {
+		request.setAttribute("publicacaostatus", Properties.getProperty(servletContext, "erro_upload"));		
 	}
 
 

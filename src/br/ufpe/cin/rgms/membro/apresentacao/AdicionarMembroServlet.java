@@ -1,6 +1,11 @@
 package br.ufpe.cin.rgms.membro.apresentacao;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileUploadException;
 
@@ -44,6 +49,22 @@ public class AdicionarMembroServlet extends AbstractServlet {
 			request.setAttribute("membrostatus", Properties.getProperty(servletContext, "e_mail_ja_cadastrado"));
 		}
 		
+	}
+	
+	@Override
+	public void dispatcher(HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view = request.getRequestDispatcher("membrostatus.jsp");
+		view.forward(request, response);		
+	}
+
+	@Override
+	public void RGMSException() {
+		request.setAttribute("membrostatus", Properties.getProperty(servletContext, "erro_bd"));		
+	}
+
+	@Override
+	public void FileUploadException() {
+		request.setAttribute("membrostatus", Properties.getProperty(servletContext, "erro_upload"));		
 	}
 
 }
