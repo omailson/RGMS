@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 
 @Entity
 public class ArtigoPeriodico extends Publicacao {
@@ -23,9 +24,9 @@ public class ArtigoPeriodico extends Publicacao {
 	}
 
 	public ArtigoPeriodico(List<Membro> autores,
-			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf,
+			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf, Projeto projeto,
 			String jornal, String volume, String numero, String paginas, String tipo) {
-		super(autores, autoresNaoMembros, titulo, ano, pdf, tipo);
+		super(autores, autoresNaoMembros, titulo, ano, pdf, projeto, tipo);
 		
 		this.setJornal(jornal);
 		this.setVolume(volume);

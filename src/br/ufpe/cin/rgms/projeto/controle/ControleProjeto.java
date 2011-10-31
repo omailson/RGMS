@@ -42,4 +42,15 @@ public class ControleProjeto extends Controle<Projeto, DaoProjeto> {
 
 		return retorno;
 	}
+	
+	public List<String> getParticipantes(String nome) {
+		Persistence.getInstance().beginTransaction();
+		
+		List<String> retorno =  this.dao.getParticipantes(nome);
+		
+		Persistence.getInstance().commit();
+		
+		return retorno;
+	}
+	
 }

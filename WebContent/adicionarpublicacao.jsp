@@ -1,8 +1,17 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@page import="br.ufpe.cin.rgms.membro.modelo.Membro"%>
+<%@page import="br.ufpe.cin.rgms.projeto.modelo.Projeto"%>
 <%@page import="br.ufpe.cin.rgms.publicacao.modelo.Publicacao"%>
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
+
+
+<%@page import="java.util.List"%>
+<%@page import="br.ufpe.cin.rgms.Facade"%>
+<%@page import="br.ufpe.cin.rgms.util.Properties"%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 
 <% ServletContext servletContext = getServletContext(); %>
 
@@ -66,6 +75,45 @@
               	<input onkeypress="return noenter();" type="hidden" name="MAX_FILE_SIZE" value="500" />
 				<input name="pdffile" type="file" />
             </p>
+            
+            <p>  	
+              	<LABEL for="projeto"> <%out.println(Properties.getProperty(this.getServletContext(),"projeto"));%></LABEL>
+              	<select onkeypress="return noenter();" name="projeto">
+              	
+              		<% 
+		
+		Object projetosObject = request.getAttribute("projetos");
+		List<Projeto> projects = new ArrayList<Projeto>();
+		
+		if(projetosObject != null){
+			projects = (List<Projeto>) projetosObject;
+		}
+		else{
+			projects = Facade.getInstance().getProjetos();
+		}
+		
+		
+		out.print("<div id=\"filtermessage\">");
+		
+		if(projects.isEmpty() && projetosObject != null){
+			out.print("<br><br><p>"+Properties.getProperty(this.getServletContext(),"sem_projetos_criterios")+"</p>");
+		}
+		else if(projects.isEmpty()){
+			out.print("<br><br><p>"+Properties.getProperty(this.getServletContext(),"sem_projetos")+"</p>");
+		}
+		
+		out.print("</div>");
+		
+		for(Projeto projeto : projects){
+			
+			out.print("<option>" + projeto.getNome() + "</option>");
+			
+		}
+		
+		
+		 %>
+              	
+				</select>
             
 			<p> 
 	    		<LABEL for="conferencia" id="labelconferencia"> <%out.println(Properties.getProperty(this.getServletContext(),"conferencia")+ "*");%> </LABEL>

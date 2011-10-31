@@ -58,5 +58,11 @@ public class DaoProjeto extends Dao<Projeto>{
 		
 		return criteria.list();
 	}
+	
+	public List<String> getParticipantes (String nome){
+		String sql = "SELECT M.nome FROM membro_publicacao MP, membro M, publicacao P WHERE M.id = MP.membro_id AND P.projeto = " + this.getProjeto(nome).getId();
+		List<String> list = (List<String>) Persistence.getInstance().getSession().createSQLQuery(sql).list();
+		return list;
+	}
 
 }

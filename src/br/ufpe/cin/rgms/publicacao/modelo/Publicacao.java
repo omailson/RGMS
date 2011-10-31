@@ -3,10 +3,13 @@ package br.ufpe.cin.rgms.publicacao.modelo;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -14,6 +17,7 @@ import org.hibernate.annotations.CollectionOfElements;
 
 import br.ufpe.cin.rgms.base.AbstractBusinessEntity;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.publicacao.apresentacao.SFLMembro;
 import br.ufpe.cin.rgms.publicacao.apresentacao.SFLString;
 
@@ -35,6 +39,19 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 	
 	protected String titulo;
 	
+	protected Projeto projetoDePesquisa; 
+	
+	@ManyToOne
+	@JoinColumn(name="projeto", referencedColumnName="ID") 
+	public Projeto getProjetoDePesquisa() {
+		return projetoDePesquisa;
+	}
+
+	public void setProjetoDePesquisa(Projeto projetoDePesquisa) {
+		this.projetoDePesquisa = projetoDePesquisa;
+	}
+
+
 	protected String ano;
 	
 	protected byte[] pdf;
@@ -44,7 +61,7 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 	}
 	
 	public Publicacao(List<Membro> autores, List<String> autoresNaoMembros,
-			String titulo, String ano, byte[] pdf, String tipo) {
+			String titulo, String ano, byte[] pdf, Projeto projeto, String tipo) {
 		super();
 		
 		this.setAutores(autores);
@@ -52,6 +69,7 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 		this.setTitulo(titulo);
 		this.setAno(ano);
 		this.setPdf(pdf);
+		this.setProjetoDePesquisa(projeto);
 		this.setTipo(tipo);
 	}
 

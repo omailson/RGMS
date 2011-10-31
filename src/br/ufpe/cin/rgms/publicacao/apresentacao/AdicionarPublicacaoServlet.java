@@ -11,6 +11,7 @@ import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.base.AbstractServlet;
 import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.publicacao.MapeamentoTipo;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoPeriodico;
@@ -42,6 +43,8 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 			String universidade = this.formfields.get("universidade");
 			String mesdefesa = this.formfields.get("mesdefesa");
 			String nivel = this.formfields.get("nivel");
+			String projetostr = this.formfields.get("projeto");
+			Projeto projeto = Facade.getInstance().getProjeto(projetostr);
 
 			if (Facade.getInstance().getPublicacao(titulo) != null) {
 				request.setAttribute("insertpublicacaostatus", Properties.getProperty(servletContext, "titulo_ja_cadastrado"));
@@ -49,7 +52,7 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				boolean insertionFlag = false;
 				// Artigo em conferência
 				if (tipo.equals(MapeamentoTipo.CONFERENCIA)) {
-					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, conferencia, paginasConf, mes,
+					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, projeto, conferencia, paginasConf, mes,
 							MapeamentoTipo.CONFERENCIA);
 
 					Facade.getInstance().inserirPublicacao(artigoConf);
@@ -57,7 +60,7 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				}
 				// Artigo periódico
 				if (tipo.equals(MapeamentoTipo.PERIODICO)) {
-					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, jornal, volume, numero, paginas,
+					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, projeto, jornal, volume, numero, paginas,
 							MapeamentoTipo.PERIODICO);
 					Facade.getInstance().inserirPublicacao(artigoPeriodico);
 					insertionFlag = true;
@@ -65,13 +68,13 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				// Pós graduação
 				if (tipo.equals(MapeamentoTipo.POSGRADUACAO)) {
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "mestrado"))) {
-						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
 								Nivel.MESTRADO, MapeamentoTipo.POSGRADUACAO);
 						Facade.getInstance().inserirPublicacao(posGradM);
 						insertionFlag = true;
 					}
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "doutorado"))) {
-						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
 								Nivel.DOUTORADO, tipo);
 						Facade.getInstance().inserirPublicacao(posGradD);
 						insertionFlag = true;

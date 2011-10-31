@@ -121,6 +121,10 @@ public class Facade {
 		return this.controleProjeto.getProjetos(formfields);
 	}
 	
+	public List<String> getParticipantes(String nome) {
+		return this.controleProjeto.getParticipantes(nome);
+	}
+	
 	public List<Publicacao> getPublicacoes(HashMap<String, String> formfields) {
 		return this.controlePublicacao.getPublicacoes(formfields);
 	}

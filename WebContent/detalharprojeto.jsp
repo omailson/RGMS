@@ -2,8 +2,13 @@
 
 
 <%@page import="br.ufpe.cin.rgms.projeto.modelo.Projeto"%>
+<%@page import="br.ufpe.cin.rgms.membro.modelo.Membro"%>
 <%@page import="java.util.List"%>
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
+<%@page import="br.ufpe.cin.rgms.Facade"%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <html>
 
 <% ServletContext servletContext = getServletContext(); %>
@@ -48,7 +53,41 @@
 		out.print("<tr>");
 		out.print("<td>"+Properties.getProperty(this.getServletContext(),"nome")+" " + projeto.getNome() + "</td>");
 		out.print("<td>"+Properties.getProperty(this.getServletContext(),"descricao")+" " + projeto.getDescricao() + "</td>");
+		
 		out.print("</tr>");
+		
+			
+			Object projetosObject = request.getAttribute("participantes");
+			List<String> projects = new ArrayList<String>();
+			
+			if(projetosObject != null){
+				projects = (List<String>) projetosObject;
+			}
+			else{
+				projects = Facade.getInstance().getParticipantes(projeto.getNome());
+			}
+			
+			
+			out.print("<div id=\"filtermessage\">");
+			
+			
+			if(projects.isEmpty() && projetosObject != null){
+				out.print("<br><br><p>"+Properties.getProperty(this.getServletContext(),"sem_projetos_criterios")+"</p>");
+			}
+			else if(projects.isEmpty()){
+				out.print("<br><br><p>"+Properties.getProperty(this.getServletContext(),"sem_projetos")+"</p>");
+			}
+			
+			out.print("</div>");
+			
+			out.print("<tr><td>" + Properties.getProperty(this.getServletContext(),"participantes") + ":</td></tr>");
+			for(String tmp : projects){
+				out.print("<tr>");
+				out.print("<td>" + tmp + "</td>");
+				out.print("</tr>");
+				
+			}
+			
 		
 		out.print("</table>");
 		%>

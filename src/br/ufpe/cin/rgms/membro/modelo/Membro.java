@@ -17,6 +17,8 @@ import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
 public class Membro extends AbstractBusinessEntity implements
 		Comparable<Membro> {
+	private static final long serialVersionUID = 1L;
+
 	protected Nome nome = new Nome();
 
 	protected Contato contato = new Contato();

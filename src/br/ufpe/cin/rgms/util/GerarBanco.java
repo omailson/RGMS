@@ -42,12 +42,12 @@ public class GerarBanco {
 			
 			naoMembro.add("Michelle");
 			
-			Facade.getInstance().inserirPublicacao(new ArtigoConferencia(membros,naoMembro, "Uma abordadegem de Teste", "2010", null,
-			"Conferencia de Teste", "112-113", "Maio", "Artigo em Conferência"));
-			List<String> not = new ArrayList<String>();
-			
-			Facade.getInstance().inserirPublicacao(new PublicacaoPosGraduacao(membros,not, "Linha de Produto de Software", "2012", null,
-			"UFPE", "março", Nivel.MESTRADO, "Pós-Graduação"));
+//			Facade.getInstance().inserirPublicacao(new ArtigoConferencia(membros,naoMembro, "Uma abordadegem de Teste", "2010", null,
+//			"Conferencia de Teste", "112-113", "Maio", "Artigo em Conferência"));
+//			List<String> not = new ArrayList<String>();
+//			
+//			Facade.getInstance().inserirPublicacao(new PublicacaoPosGraduacao(membros,not, "Linha de Produto de Software", "2012", null,
+//			"UFPE", "março", Nivel.MESTRADO, "Pós-Graduação"));
 			
 			List<String> financiadores = new ArrayList<String>();
 			financiadores.add("Financiador 1");
