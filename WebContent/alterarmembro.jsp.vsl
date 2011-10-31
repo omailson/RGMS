@@ -1,0 +1,234 @@
+#set( $projetoPesquisa = true )
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<%@page import="br.ufpe.cin.rgms.membro.modelo.Membro"%>
+<%@page import="br.ufpe.cin.rgms.membro.modelo.Estudante"%>
+<%@page import="java.util.regex.Pattern"%><html>
+<%@page import="br.ufpe.cin.rgms.util.Properties"%>
+
+<% ServletContext servletContext = getServletContext(); %>
+
+<head>
+<title><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></title>
+<LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
+</head>
+
+<body>
+
+<div id="page">
+	<div id="header"></div>
+	
+	<div id="mainarea">
+	<div id="sidebar">
+		<div id="headerleft">
+			<h1><a href="home.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></a></h1>
+		</div>
+		<div id="menulinks">
+			<a href="home.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"home"));%></a>
+			<a class="active" href="membros.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"membros"));%></a>
+#if ( $projetoPesquisa )
+			<a href="projetos.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"projetos"));%></a>
+#end
+			<a href="publicacoes.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"publicacoes"));%></a>
+		</div>
+	</div>
+	
+	<div id="contentarea">
+		<h2><%out.println(Properties.getProperty(this.getServletContext(),"alterar"));%></h2>
+		<% Membro membro = ((Membro) request.getAttribute("membroalterar"));
+		 %>
+		
+		<p><%out.println(Properties.getProperty(this.getServletContext(),"alterar_dados_membro"));%></p>
+		
+		<div id="foto">
+			<img src="Foto.do?membro=<% out.print(membro.getEmail()); %>">
+		</div>
+		
+		<FORM name="alterarmembro" action="AlterarDadosMembro.do" method="post" enctype="multipart/form-data">
+    		<p>
+    			<LABEL for="nome"><%out.println(Properties.getProperty(this.getServletContext(),"nome"));%> </LABEL>
+            	<INPUT onkeypress="return noenter();" type="text" name="nome" size="30" value="<% out.print(membro.getNome()); %>">
+    			
+    			<LABEL for="lastname"> <%out.println(Properties.getProperty(this.getServletContext(),"sobrenome"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="sobrenome" size="30" value="<% out.print(membro.getSobrenome()); %>">
+            </p>
+            <p>
+    			<LABEL for="universidade"> <%out.println(Properties.getProperty(this.getServletContext(),"universidade"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="universidade" size="26" value="<% out.print(membro.getUniversidade()); %>">
+              	
+              	<LABEL for="departamento"> <%out.println(Properties.getProperty(this.getServletContext(),"departamento"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="departamento" size="26" value="<% out.print(membro.getDepartamento()); %>">
+              	
+            	<br>  	
+            
+              	<LABEL for="vinculo"> <%out.println(Properties.getProperty(this.getServletContext(),"vinculo"));%> </LABEL>
+              	<select onkeypress="return noenter();" onchange="habilitaCampos();" name="vinculo">
+              		<option><%out.println(Properties.getProperty(this.getServletContext(),"estudante"));%></option>
+					<option><%out.println(Properties.getProperty(this.getServletContext(),"pesquisador"));%></option>
+					<option><%out.println(Properties.getProperty(this.getServletContext(),"outros"));%></option>
+				</select>
+				<input type="hidden" name="vinculoHidden" value="<% out.print(membro.getTipo()); %>">
+				
+				<LABEL for="situacao"> <%out.println(Properties.getProperty(this.getServletContext(),"situacao"));%> </LABEL>
+              	<select onkeypress="return noenter();" name="situacao">
+					<option><%out.println(Properties.getProperty(this.getServletContext(),"ativo"));%></option>
+					<option><%out.println(Properties.getProperty(this.getServletContext(),"inativo"));%></option>
+				</select>
+				<input type="hidden" name="situacaoHidden" value="<% out.print(membro.getSituacao()); %>">
+              	
+    			<LABEL for="email"><%out.println(Properties.getProperty(this.getServletContext(),"e_mail"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();"  type="text" name="email" size="31" value="<% out.print(membro.getEmail()); %>">
+              	<input type="hidden" name="emailoriginal" value="<% out.print(membro.getEmail()); %>">
+              	
+              	<br>
+              	
+              	<LABEL for="orientador" id="labelorientador"> <%out.println(Properties.getProperty(this.getServletContext(),"orientador"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="orientador" size="27" value="<% if(membro instanceof Estudante) out.print(((Estudante)membro).getOrientador()); %>">
+              	
+              	<LABEL for="coorientador" id="labelcoorientador"> <%out.println(Properties.getProperty(this.getServletContext(),"co_orientador"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="coorientador" size="27" value="<% if(membro instanceof Estudante) out.print(((Estudante)membro).getCoOrientador()); %>">
+            </p>
+            <p>
+              	<LABEL for="website"> <%out.println(Properties.getProperty(this.getServletContext(),"web_site"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="website" size="39" value="<% out.print(membro.getWebsite()); %>">
+              	
+              	<LABEL for="telefone"> <%out.println(Properties.getProperty(this.getServletContext(),"fone"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="telefone" size="20" value="<% out.print(membro.getTelefone()); %>">
+              	
+              	<br>
+              	
+              	<LABEL for="cidade"> <%out.println(Properties.getProperty(this.getServletContext(),"cidade"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="cidade" size="14" value="<% out.print(membro.getCidade()); %>">
+              	
+              	<LABEL for="pais"> <%out.println(Properties.getProperty(this.getServletContext(),"pais"));%> </LABEL>
+              	<INPUT onkeypress="return noenter();" type="text" name="pais" size="14" value="<% out.print(membro.getPais()); %>">
+              	
+              	<LABEL for="fotofile"> <%out.println(Properties.getProperty(this.getServletContext(),"foto"));%> </LABEL>
+              	<input onkeypress="return noenter();" type="hidden" name="MAX_FILE_SIZE" value="100" />
+				<input name="fotofile" type="file" accept="image/jpg"/>
+			</p>
+            <p>
+              	<br>
+    			<INPUT onclick="validarCampos();" name="cadastrar" value=<%out.println(Properties.getProperty(this.getServletContext(),"concluir"));%> type="submit">
+    			<INPUT value=<%out.println(Properties.getProperty(this.getServletContext(),"limpar"));%> type="reset">
+    		</p>
+ 		</FORM>
+	</div>
+	
+		
+	
+	<div id="footer">
+		<a href="http://www.free-css-templates.com/">Designed by Free CSS Templates</a>, Thanks to <a href="http://www.openwebdesign.org/">professional web design</a>
+	</div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	if(document.alterarmembro.vinculoHidden.value == "Estudante"){
+		document.alterarmembro.vinculo.selectedIndex = 0;
+	}
+	else if(document.alterarmembro.vinculoHidden.value == "Pesquisador"){
+		document.alterarmembro.vinculo.selectedIndex = 1;
+	}
+	else{
+		document.alterarmembro.vinculo.selectedIndex = 2;
+	}
+	
+	habilitaCampos();
+	
+	if(document.alterarmembro.situacaoHidden.value == "Ativo"){
+		document.alterarmembro.situacao.selectedIndex = 0;
+	}
+	else{
+		document.alterarmembro.situacao.selectedIndex = 1;
+	}
+
+	function noenter() {
+  		return !(window.event && window.event.keyCode == 13);
+	}
+
+	function habilitaCampos(){
+		if(document.alterarmembro.vinculo.value != "Estudante"){
+			document.alterarmembro.orientador.disabled = true;
+			document.alterarmembro.orientador.style.visibility="hidden";
+			document.getElementById('labelorientador').style.visibility = "hidden";
+			
+			document.alterarmembro.coorientador.disabled = true;
+			document.alterarmembro.coorientador.style.visibility="hidden";
+			document.getElementById('labelcoorientador').style.visibility = "hidden";
+		}
+		else{
+			document.alterarmembro.orientador.disabled = false;
+			document.alterarmembro.orientador.style.visibility="visible";
+			document.getElementById('labelorientador').style.visibility = "visible";
+			
+			document.alterarmembro.coorientador.disabled = false;
+			document.alterarmembro.coorientador.style.visibility="visible";
+			document.getElementById('labelcoorientador').style.visibility = "visible";
+		}
+	}
+
+	function validarCampos(){ 
+		if (document.alterarmembro.nome.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_nome_invalid");%>");
+      	 	document.alterarmembro.nome.focus();
+      	 
+      	 	return false; 
+   		} 
+   		if (document.alterarmembro.sobrenome.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_sobrenome_invalid");%>");
+      	 	document.alterarmembro.sobrenome.focus();
+      	 
+      	 	return false; 
+   		}
+   		if (document.alterarmembro.universidade.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_universidade_invalid");%>");
+      	 	document.alterarmembro.universidade.focus();
+      	 
+      	 	return false; 
+   		}
+   		if (document.alterarmembro.departamento.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_departamento_invalid");%>");
+      	 	document.alterarmembro.departamento.focus();
+      	 
+      		return false; 
+   		}
+        if(document.alterarmembro.email.value.length==0 || !document.alterarmembro.email.value.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z0-9._-]+)/gi)){  
+            alert("<%Properties.getProperty(servletContext,"js_email_invalid");%>");  
+            document.alterarmembro.email.focus();  
+            
+            return false;
+        }
+        if (document.alterarmembro.website.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_website_invalid");%>");
+      	 	document.alterarmembro.website.focus();
+      	 
+      		return false; 
+   		}
+   		if(document.alterarmembro.telefone.value.length<8 || !document.alterarmembro.telefone.value.match(/^\d+$/)){  
+            alert("<%Properties.getProperty(servletContext,"js_telefone_invalid");%>");  
+            document.alterarmembro.telefone.focus();  
+            
+            return false;
+        }
+        if (document.alterarmembro.cidade.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_cidade_invalid");%>");
+      	 	document.alterarmembro.cidade.focus();
+      	 
+      		return false; 
+   		}
+   		if (document.alterarmembro.pais.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_pais_invalid");%>");
+      	 	document.alterarmembro.pais.focus();
+      	 
+      		return false; 
+   		}   		
+   		document.alterarmembro.submit();
+	}
+</script>
+
+</body>
+
+</html>
