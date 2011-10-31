@@ -20,7 +20,6 @@ public class ArtigoConferencia extends Publicacao {
 	public ArtigoConferencia() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public ArtigoConferencia(List<Membro> autores,
 			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf, Projeto projeto,
 			String conferencia, String paginas, String mes, String tipo) {
@@ -30,7 +29,6 @@ public class ArtigoConferencia extends Publicacao {
 		this.setPaginas(paginas);
 		this.setMes(mes);
 	}
-
 	@Basic
 	public String getConferencia() {
 		return conferencia;

@@ -1,4 +1,3 @@
-#set( $projetoPesquisa = true )
 package br.ufpe.cin.rgms.publicacao.modelo;
 
 import java.util.List;

@@ -22,7 +22,6 @@ public class ArtigoPeriodico extends Publicacao {
 	public ArtigoPeriodico() {
 		// TODO Auto-generated constructor stub
 	}
-
 	public ArtigoPeriodico(List<Membro> autores,
 			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf, Projeto projeto,
 			String jornal, String volume, String numero, String paginas, String tipo) {

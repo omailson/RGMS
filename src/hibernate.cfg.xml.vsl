@@ -14,7 +14,9 @@
     	
     	<mapping class="br.ufpe.cin.rgms.membro.modelo.Membro"/>
     	<mapping class="br.ufpe.cin.rgms.membro.modelo.Estudante"/>
+#if ( $projetoPesquisa )
     	<mapping class="br.ufpe.cin.rgms.projeto.modelo.Projeto"/>
+#end
     	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.Publicacao"/>
     	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia"/>
     	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.PublicacaoPosGraduacao"/>

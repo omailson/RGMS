@@ -46,7 +46,7 @@
 		
 		Publicacao publicacao = ((Publicacao) request.getAttribute("publicacaoalterar"));
 		if(publicacao==null){
-			System.out.println("T�tulo nulo ");
+			System.out.println("Tï¿½tulo nulo ");
 		}
 		%>
 		
@@ -141,9 +141,9 @@
 	}
 
 	function habilitaCampos(){
-		if((document.alterarpublicacao.tipo.value == "Artigo em Peri�dicos e Revistas") ||
-				(document.alterarpublicacao.tipo.value != "Artigo em Confer�ncia") ||
-				(document.alterarpublicacao.tipo.value != "P�s-Gradua��o")){
+		if((document.alterarpublicacao.tipo.value == "Artigo em Periï¿½dicos e Revistas") ||
+				(document.alterarpublicacao.tipo.value != "Artigo em Conferï¿½ncia") ||
+				(document.alterarpublicacao.tipo.value != "Pï¿½s-Graduaï¿½ï¿½o")){
 		    
 			document.alterarpublicacao.conferencia.disabled = true;
 			document.alterarpublicacao.conferencia.style.visibility="hidden";
@@ -195,9 +195,9 @@
 		
 	    }	
 		else{
-		if((document.alterarpublicacao.tipo.value == "Artigo em Confer�ncia") ||
-				(document.alterarpublicacao.tipo.value != "Artigo em Peri�dicos e Revistas") ||
-				(document.alterarpublicacao.tipo.value != "P�s-Gradua��o")){
+		if((document.alterarpublicacao.tipo.value == "Artigo em Conferï¿½ncia") ||
+				(document.alterarpublicacao.tipo.value != "Artigo em Periï¿½dicos e Revistas") ||
+				(document.alterarpublicacao.tipo.value != "Pï¿½s-Graduaï¿½ï¿½o")){
 			
 			document.alterarpublicacao.jornal.disabled = true;
 			document.alterarpublicacao.jornal.style.visibility="hidden";
@@ -279,7 +279,7 @@
 	      	 
 	      		return false; 
 	   		}
-		if( document.alterarpublicacao.tipo.value=="Artigo em Confer�ncia"){
+		if( document.alterarpublicacao.tipo.value=="Artigo em Conferï¿½ncia"){
 			if (document.alterarpublicacao.conferencia.value.length==0){ 
 	      	 	alert("<%Properties.getProperty(servletContext,"js_conferencia_invalid"); %>");
 	      	 	document.alterarpublicacao.conferencia.focus();
@@ -301,7 +301,7 @@
 
 		}
 		else{
-			if(document.alterarpublicacao.tipo.value=="Artigo em Peri�dicos e Revistas"){
+			if(document.alterarpublicacao.tipo.value=="Artigo em Periï¿½dicos e Revistas"){
 				if (document.alterarpublicacao.jornal.value.length==0){ 
 		      	 	alert("<%Properties.getProperty(servletContext,"js_jornal_invalid"); %>");
 		      	 	document.alterarpublicacao.jornal.focus();
@@ -328,7 +328,7 @@
 		   		}
 			}
 			else{
-				if(document.alterarpublicacao.tipo.value == "P�s-Gradua��o"){
+				if(document.alterarpublicacao.tipo.value == "Pï¿½s-Graduaï¿½ï¿½o"){
 					if(document.alterarpublicacao.universidade.value.length==0){  
 			            alert("<%Properties.getProperty(servletContext,"js_universidade_invalid"); %>");  
 			            document.alterarpublicacao.universidade.focus();  

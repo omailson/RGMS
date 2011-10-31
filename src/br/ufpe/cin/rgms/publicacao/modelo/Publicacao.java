@@ -25,11 +25,11 @@ import br.ufpe.cin.rgms.publicacao.apresentacao.SFLString;
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames={"titulo"})})
 public abstract class Publicacao extends AbstractBusinessEntity implements Comparable<Publicacao>{ 
 
-	public final static String CONFERENCIA = "Artigo em Conferência";
+	public final static String CONFERENCIA = "Artigo em ConferÃªncia";
 	
-	public final static String PERIODICO = "Artigo em Periódicos e Revistas";
+	public final static String PERIODICO = "Artigo em PeriÃ³dicos e Revistas";
 	
-	public final static String POSGRADUACAO = "Pós-Graduação";
+	public final static String POSGRADUACAO = "PÃ³s-GraduaÃ§Ã£o";
 	
 	protected String tipo;
 	
@@ -38,7 +38,6 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 	protected List<String> autoresNaoMembros;
 	
 	protected String titulo;
-	
 	protected Projeto projetoDePesquisa; 
 	
 	@ManyToOne
@@ -46,7 +45,7 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 	public Projeto getProjetoDePesquisa() {
 		return projetoDePesquisa;
 	}
-
+	
 	public void setProjetoDePesquisa(Projeto projetoDePesquisa) {
 		this.projetoDePesquisa = projetoDePesquisa;
 	}
@@ -59,7 +58,6 @@ public abstract class Publicacao extends AbstractBusinessEntity implements Compa
 	public Publicacao() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	public Publicacao(List<Membro> autores, List<String> autoresNaoMembros,
 			String titulo, String ano, byte[] pdf, Projeto projeto, String tipo) {
 		super();

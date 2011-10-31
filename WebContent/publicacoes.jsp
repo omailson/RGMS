@@ -193,13 +193,13 @@ web design</a></div>
 </div>
 
 <script type="text/javascript">
-	if(document.filtrarpublicacao.tipoHidden.value == "Artigo em Confer�ncia"){
+	if(document.filtrarpublicacao.tipoHidden.value == "Artigo em Conferï¿½ncia"){
 		document.filtrarpublicacao.tipo.selectedIndex = 1;
 	}
-	else if(document.filtrarpublicacao.tipoHidden.value == "Artigo em Peri�dicos e Revistas"){
+	else if(document.filtrarpublicacao.tipoHidden.value == "Artigo em Periï¿½dicos e Revistas"){
 		document.filtrarpublicacao.tipo.selectedIndex = 2;
 	}
-	else if(document.filtrarpublicacao.tipoHidden.value == "P�s-Gradua��o"){
+	else if(document.filtrarpublicacao.tipoHidden.value == "Pï¿½s-Graduaï¿½ï¿½o"){
 		document.filtrarpublicacao.tipo.selectedIndex = 3;
 	}
 	else{

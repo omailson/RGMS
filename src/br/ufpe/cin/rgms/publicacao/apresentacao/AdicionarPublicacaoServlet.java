@@ -50,7 +50,7 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				request.setAttribute("insertpublicacaostatus", Properties.getProperty(servletContext, "titulo_ja_cadastrado"));
 			} else {
 				boolean insertionFlag = false;
-				// Artigo em conferência
+				// Artigo em conferÃªncia
 				if (tipo.equals(MapeamentoTipo.CONFERENCIA)) {
 					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, projeto, conferencia, paginasConf, mes,
 							MapeamentoTipo.CONFERENCIA);
@@ -58,14 +58,14 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 					Facade.getInstance().inserirPublicacao(artigoConf);
 					insertionFlag = true;
 				}
-				// Artigo periódico
+				// Artigo periÃ³dico
 				if (tipo.equals(MapeamentoTipo.PERIODICO)) {
 					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, projeto, jornal, volume, numero, paginas,
 							MapeamentoTipo.PERIODICO);
 					Facade.getInstance().inserirPublicacao(artigoPeriodico);
 					insertionFlag = true;
 				}
-				// Pós graduação
+				// PÃ³s graduaÃ§Ã£o
 				if (tipo.equals(MapeamentoTipo.POSGRADUACAO)) {
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "mestrado"))) {
 						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,

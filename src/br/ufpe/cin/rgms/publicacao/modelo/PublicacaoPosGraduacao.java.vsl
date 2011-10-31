@@ -1,4 +1,3 @@
-#set( $projetoPesquisa = true )
 package br.ufpe.cin.rgms.publicacao.modelo;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class PublicacaoPosGraduacao extends Publicacao {
 	}
 #else
 	public PublicacaoPosGraduacao(List<Membro> autores,
-			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf, Projeto projeto,
+			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf,
 			String universidade, String mes, Nivel nivel, String tipo) {
 		super(autores, autoresNaoMembros, titulo, ano, pdf, tipo);
 		

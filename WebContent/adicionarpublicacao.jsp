@@ -79,7 +79,6 @@
             <p>  	
               	<LABEL for="projeto"> <%out.println(Properties.getProperty(this.getServletContext(),"projeto"));%></LABEL>
               	<select onkeypress="return noenter();" name="projeto">
-              	
               		<% 
 		
 		Object projetosObject = request.getAttribute("projetos");
@@ -114,7 +113,6 @@
 		 %>
               	
 				</select>
-            
 			<p> 
 	    		<LABEL for="conferencia" id="labelconferencia"> <%out.println(Properties.getProperty(this.getServletContext(),"conferencia")+ "*");%> </LABEL>
 	            <INPUT onkeypress="return noenter();"  type="text" name="conferencia" size="80">  	
@@ -206,7 +204,7 @@
       	 
       		return false; 
    		}
-	if( document.cadastropublicacao.tipo.value=="Artigo em Confer�ncia"){
+	if( document.cadastropublicacao.tipo.value=="Artigo em Conferï¿½ncia"){
 		if (document.cadastropublicacao.conferencia.value.length==0){ 
       	 	alert("<%Properties.getProperty(servletContext,"js_conferencia_invalid"); %>");
       	 	document.cadastropublicacao.conferencia.focus();
@@ -228,7 +226,7 @@
 
 	}
 	else{
-		if(document.cadastropublicacao.tipo.value=="Artigo em Peri�dicos e Revistas"){
+		if(document.cadastropublicacao.tipo.value=="Artigo em Periï¿½dicos e Revistas"){
 			if (document.cadastropublicacao.jornal.value.length==0){ 
 	      	 	alert("<%Properties.getProperty(servletContext,"js_jornal_invalid"); %>");
 	      	 	document.cadastropublicacao.jornal.focus();
@@ -255,7 +253,7 @@
 	   		}
 		}
 		else{
-			if(document.cadastropublicacao.tipo.value == "P�s-Gradua��o"){
+			if(document.cadastropublicacao.tipo.value == "Pï¿½s-Graduaï¿½ï¿½o"){
 				if(document.cadastropublicacao.universidade.value.length==0){  
 		            alert("<%Properties.getProperty(servletContext,"js_universidade_invalid"); %>");  
 		            document.cadastropublicacao.universidade.focus();  

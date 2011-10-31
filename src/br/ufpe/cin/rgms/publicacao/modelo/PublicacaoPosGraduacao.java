@@ -20,7 +20,7 @@ public class PublicacaoPosGraduacao extends Publicacao {
 	public PublicacaoPosGraduacao() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public PublicacaoPosGraduacao(List<Membro> autores,
 			List<String> autoresNaoMembros, String titulo, String ano, byte[] pdf, Projeto projeto,
 			String universidade, String mes, Nivel nivel, String tipo) {
@@ -30,7 +30,6 @@ public class PublicacaoPosGraduacao extends Publicacao {
 		this.setMes(mes);
 		this.setNivel(nivel);
 	}
-
 	@Basic
 	public String getUniversidade() {
 		return universidade;

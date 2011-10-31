@@ -55,7 +55,6 @@
 				out.print("<tr>");
 				out.print("<td>" + Properties.getProperty(this.getServletContext(),"ano") + publicacao.getAno() + "</td>");
 				out.print("</tr>");
-				
 				out.print("<tr>");
 				out.print("<td>" + Properties.getProperty(this.getServletContext(),"projeto") + publicacao.getProjetoDePesquisa().getNome() + "</td>");
 				out.print("</tr>");
