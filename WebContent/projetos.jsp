@@ -90,7 +90,7 @@
 		
 		for(Projeto projeto : projects){
 			out.print("<tr>");
-			out.print("<td><a href=DetalharProjeto.do?projeto=" + projeto.getNome() + ">" + projeto.getNome() + "</a></td>");
+			out.print("<td><a href=\"DetalharProjeto.do?projeto=" + projeto.getNome() + "\">" + projeto.getNome() + "</a></td>");
 			out.print("<td>" + projeto.getDescricao() + "</td>");
 			out.print("</tr>");
 			
