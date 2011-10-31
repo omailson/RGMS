@@ -12,6 +12,7 @@ import br.ufpe.cin.rgms.base.RGMSException;
 //import br.ufpe.cin.rgms.linhasdepesquisa.modelo.LinhaPesquisa;
 import br.ufpe.cin.rgms.membro.modelo.Estudante;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.publicacao.MapeamentoTipo;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoPeriodico;
@@ -27,51 +28,14 @@ public class GerarBanco {
 		SchemaExport se = new SchemaExport(conf);
 		se.create(true, true);
 
-		popularBanco2();
+		popularBanco();
 	}
 
-	private static void popularBanco() {
-		try {
-			Estudante felype = new Estudante("felype.ferreira@gmail.com","Felype","Santiago","Estudante","Centro de Informática","UFPE",
-					"8134395054","www.cin.ufpe.br/~fsf2","Olinda","Brasil","Ativo",null,null,"Paulo Henrique Monteiro Borba","");
-
+	public static void popularBanco() {
+		try {			
+			Projeto p1 = new Projeto("Grupo AEIOU", "O grupo estuda os conceitos de grupos de pesquisa");
+			Facade.getInstance().inserirProjeto(p1);
 			
-			Facade.getInstance().inserirMembro(felype);
-			List<Membro> membros = new ArrayList<Membro>();
-			
-			membros.add(Facade.getInstance().getMembro(felype.getEmail()));
-			List<String> naoMembro = new ArrayList<String>();
-			
-			naoMembro.add("Michelle");
-			
-//			Facade.getInstance().inserirPublicacao(new ArtigoConferencia(membros,naoMembro, "Uma abordadegem de Teste", "2010", null,
-//			"Conferencia de Teste", "112-113", "Maio", "Artigo em Conferência"));
-//			List<String> not = new ArrayList<String>();
-//			
-//			Facade.getInstance().inserirPublicacao(new PublicacaoPosGraduacao(membros,not, "Linha de Produto de Software", "2012", null,
-//			"UFPE", "março", Nivel.MESTRADO, "Pós-Graduação"));
-			
-			List<String> financiadores = new ArrayList<String>();
-			financiadores.add("Financiador 1");
-			financiadores.add("Financiador 2");
-			financiadores.add("Financiador 3");
-			
-			List<String> linksRelacionados = new ArrayList<String>();
-			linksRelacionados.add("Link relacionado 1");
-			linksRelacionados.add("Link relacionado 2");
-			linksRelacionados.add("Link relacionado 3");
-			
-			List<Publicacao> publicacoes = Facade.getInstance().getPublicacoes();
-			
-		} catch (RGMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public static void popularBanco2() {
-		try {
 			Estudante e1 = new Estudante(
 					"mdlm@cin.ufpe.br", 
 					"Mailson", 
@@ -119,27 +83,17 @@ public class GerarBanco {
 					"Sobre artigos de conferência", 
 					"2011", 
 					null,			// PDF 
+					Facade.getInstance().getProjeto(p1.getNome()),
 					"ICIP", 
 					"2", 
 					"10", 
 					MapeamentoTipo.CONFERENCIA);
 			Facade.getInstance().inserirPublicacao(a1);
 			
-			// TODO Cadastrar grupo de pesquisa
-			List<Membro> membros1 = new ArrayList<Membro>();
-			membros1.add(Facade.getInstance().getMembro(e1.getEmail()));
-			membros1.add(Facade.getInstance().getMembro(e2.getEmail()));
-			
-			List<Publicacao> artigos1 = new ArrayList<Publicacao>();
-			artigos1.add(Facade.getInstance().getPublicacao(a1.getTitulo()));
-			
-			// Cadastrar o grupo de verdade
-			// membros1 são os membros do grupo
-			// artigos1 são os artigos publicados pelo grupo
-			// Grupo g1 = new Grupo(membros1, artigos1, "Grupo AEIOU", "O grupo estuda os conceitos de grupos de pesquisa");
-			// Facade.getInstance().inserirGrupo(g1);
-			
 			// ---
+			
+			Projeto p3 = new Projeto("CIn Labs", "Grupo de estudo do comportamento das redes do CIn");
+			Facade.getInstance().inserirProjeto(p3);
 			
 			Estudante e3 = new Estudante(
 					"embat@cin.ufpe.br", 
@@ -169,6 +123,7 @@ public class GerarBanco {
 					"Estudo do comportamento de usuários nas mailing-lists", 
 					"2011", 
 					null, 
+					Facade.getInstance().getProjeto(p3.getNome()),
 					"Whatever Journal", 
 					"3", 
 					"2", 
@@ -222,6 +177,7 @@ public class GerarBanco {
 					"Desenvolvimento de softwares nas nuvens", 
 					"2010", 
 					null, 
+					Facade.getInstance().getProjeto(p3.getNome()),
 					"UFPE", 
 					"10", 
 					Nivel.MESTRADO, 
@@ -245,22 +201,7 @@ public class GerarBanco {
 					"Fulano de Tal", 
 					"Sicrano");
 			Facade.getInstance().inserirMembro(e6);
-			
-			// TODO Cadastro do grupo de pesquisa
-			List<Membro> membros3 = new ArrayList<Membro>();
-			membros3.add(Facade.getInstance().getMembro(e3.getEmail()));
-			membros3.add(Facade.getInstance().getMembro(e4.getEmail()));
-			membros3.add(Facade.getInstance().getMembro(e5.getEmail()));
-			membros3.add(Facade.getInstance().getMembro(e6.getEmail()));
-			
-			List<Publicacao> artigos3 = new ArrayList<Publicacao>();
-			artigos3.add(Facade.getInstance().getPublicacao(a3.getTitulo()));
-			artigos3.add(Facade.getInstance().getPublicacao(a4.getTitulo()));
-			
-			// TODO Cadastrar o grupo de verdade
-			// Grupo g3 = new Grupo(membros3, artigos3, "CIn Labs", "Grupo de estudo do comportamento das redes do CIn");
-			// Facade.getInstance().inserirGrupo(g3);
-			
+						
 		} catch (RGMSException e) {
 			e.printStackTrace();
 		}
