@@ -6,8 +6,10 @@ import java.util.List;
 import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.controle.ControleMembro;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+#if ( $projetoPesquisa )
 import br.ufpe.cin.rgms.projeto.controle.ControleProjeto;
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
+#end
 import br.ufpe.cin.rgms.publicacao.controle.ControlePublicacao;
 import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 
@@ -17,42 +19,25 @@ public class Facade {
 	
 	private ControleMembro controleMembro;
 	private ControlePublicacao controlePublicacao;
+#if ( $projetoPesquisa )
 	private ControleProjeto controleProjeto;
+#end
 	
 	private Facade() {
 		this.controleMembro = new ControleMembro();
 		this.controlePublicacao = new ControlePublicacao();
+#if ( $projetoPesquisa )
 		this.controleProjeto = new ControleProjeto();
+#end
 	}
 	
 	public static Facade getInstance(){
 		if(singleton == null){
 			singleton = new Facade();
 		}
-		
 		return singleton;
 	}
 	
-	public Projeto getProjeto(String nome){
-		return controleProjeto.getProjeto(nome);
-	}
-	
-	public void inserirProjeto(Projeto projeto) throws RGMSException{
-		this.controleProjeto.inserir(projeto);
-	}
-	
-	public void removerProjeto(Projeto projeto){
-		this.controleProjeto.remover(projeto);
-	}
-	
-	public List<Projeto> getProjetos(){
-		return controleProjeto.listar();
-	}
-	
-	public void alterarProjeto(Projeto projeto) throws RGMSException{
-		this.controleProjeto.alterar(projeto);
-	}
-
 	public Membro getMembro(String email) {
 		return controleMembro.getUsuario(email);
 	}
@@ -105,7 +90,6 @@ public class Facade {
 
 	public byte[] getPDF(String idPublicacao) {
 		Publicacao publicacao = this.controlePublicacao.getPublicacao(Integer.parseInt(idPublicacao));
-		
 		return publicacao.getPdf();
 	}
 
@@ -117,6 +101,31 @@ public class Facade {
 		return this.controleMembro.getMembros(formfields);
 	}
 	
+	public List<Publicacao> getPublicacoes(HashMap<String, String> formfields) {
+		return this.controlePublicacao.getPublicacoes(formfields);
+	}
+	
+#if ( $projetoPesquisa )
+	public Projeto getProjeto(String nome){
+		return controleProjeto.getProjeto(nome);
+	}
+	
+	public void inserirProjeto(Projeto projeto) throws RGMSException{
+		this.controleProjeto.inserir(projeto);
+	}
+	
+	public void removerProjeto(Projeto projeto){
+		this.controleProjeto.remover(projeto);
+	}
+	
+	public List<Projeto> getProjetos(){
+		return controleProjeto.listar();
+	}
+	
+	public void alterarProjeto(Projeto projeto) throws RGMSException{
+		this.controleProjeto.alterar(projeto);
+	}
+
 	public List<Projeto> getProjetos(HashMap<String, String> formfields) {
 		return this.controleProjeto.getProjetos(formfields);
 	}
@@ -124,8 +133,5 @@ public class Facade {
 	public List<String> getParticipantes(String nome) {
 		return this.controleProjeto.getParticipantes(nome);
 	}
-	
-	public List<Publicacao> getPublicacoes(HashMap<String, String> formfields) {
-		return this.controlePublicacao.getPublicacoes(formfields);
-	}
+#end
 }

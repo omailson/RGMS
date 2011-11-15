@@ -44,6 +44,7 @@
 		
 		<table align=center>
 		<tr><td>
+#if ( $projetoPesquisa )
 		<%
 		out.print("<table align=left>");
 		out.print("<tr>");
@@ -87,6 +88,7 @@
 		
 		out.print("</table>");
 		%>
+#end
 		</td></tr>
 		
 		<tr><td>

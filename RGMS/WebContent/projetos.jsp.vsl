@@ -60,6 +60,7 @@
 </div>
 
 <table align=center>
+#if ( $projetoPesquisa )
 	<% 
 		
 		Object projetosObject = request.getAttribute("projetos");
@@ -94,6 +95,7 @@
 		
 		
 		 %>
+#end
 </table>
 
 <br>

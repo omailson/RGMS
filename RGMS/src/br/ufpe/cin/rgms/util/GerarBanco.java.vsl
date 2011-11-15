@@ -12,7 +12,9 @@ import br.ufpe.cin.rgms.base.RGMSException;
 //import br.ufpe.cin.rgms.linhasdepesquisa.modelo.LinhaPesquisa;
 import br.ufpe.cin.rgms.membro.modelo.Estudante;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+#if ( $projetoPesquisa )
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
+#end
 import br.ufpe.cin.rgms.publicacao.MapeamentoTipo;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoPeriodico;
@@ -32,11 +34,13 @@ public class GerarBanco {
 
 	public static void popularBanco() {
 		try {
+#if ( $projetoPesquisa )			
 			Projeto p1 = new Projeto("Grupo AEIOU", "O grupo estuda os conceitos de grupos de pesquisa");
 			Facade.getInstance().inserirProjeto(p1);
 			
 			Projeto p3 = new Projeto("CIn Labs", "Grupo de estudo do comportamento das redes do CIn");
 			Facade.getInstance().inserirProjeto(p3);
+#end
 			
 			Estudante e1 = new Estudante(
 					"mdlm@cin.ufpe.br", 
@@ -82,10 +86,12 @@ public class GerarBanco {
 			ArtigoConferencia a1 = new ArtigoConferencia(
 					autores1, 
 					autoresNaoMembros1, 
-					"Sobre artigos de conferÃªncia", 
+					"Sobre artigos de conferência", 
 					"2011", 
 					null,			// PDF 
+#if ( $projetoPesquisa )
 					Facade.getInstance().getProjeto(p1.getNome()),
+#end
 					"ICIP", 
 					"2", 
 					"10", 
@@ -108,7 +114,7 @@ public class GerarBanco {
 					"Ativo", 
 					null, 
 					null, 
-					"Paulo GonÃ§alves", 
+					"Paulo Gonçalves", 
 					"");
 			Facade.getInstance().inserirMembro(e3);
 			
@@ -119,10 +125,12 @@ public class GerarBanco {
 			ArtigoPeriodico a3 = new ArtigoPeriodico(
 					autores3, 
 					autoresNaoMembros3, 
-					"Estudo do comportamento de usuÃ¡rios nas mailing-lists", 
+					"Estudo do comportamento de usuários nas mailing-lists", 
 					"2011", 
 					null, 
+#if ( $projetoPesquisa )
 					Facade.getInstance().getProjeto(p3.getNome()),
+#end
 					"Whatever Journal", 
 					"3", 
 					"2", 
@@ -150,7 +158,7 @@ public class GerarBanco {
 			
 			Estudante e5 = new Estudante(
 					"evc2@cin.ufpe.br", 
-					"EllÃ­s", 
+					"Ellís", 
 					"Queiroz", 
 					"Estudante", 
 					"CIn", 
@@ -176,7 +184,9 @@ public class GerarBanco {
 					"Desenvolvimento de softwares nas nuvens", 
 					"2010", 
 					null, 
+#if ( $projetoPesquisa )
 					Facade.getInstance().getProjeto(p3.getNome()),
+#end
 					"UFPE", 
 					"10", 
 					Nivel.MESTRADO, 
