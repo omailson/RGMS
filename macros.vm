@@ -1,0 +1,15 @@
+#macro( menu $actived )
+
+#if ( $projetoPesquisa )
+#set( $list = ["home","membros","projetos","publicacoes","contato"] )
+#else
+#set( $list = ["home","membros","projetos","contato"] )
+#end
+
+#foreach( $item in $list )
+#set( $active = '' )
+#if ( $actived == $item )#set( $active = ' class="active"' )#end
+    <a$active href="${item}.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"${item}"));%></a>
+#end
+
+#end
