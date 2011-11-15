@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import br.ufpe.cin.rgms.base.Dao;
 import br.ufpe.cin.rgms.base.Persistence;
-import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 
 public class DaoProjeto extends Dao<Projeto>{

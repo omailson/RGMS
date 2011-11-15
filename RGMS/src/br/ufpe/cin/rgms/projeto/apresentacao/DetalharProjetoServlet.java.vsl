@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufpe.cin.rgms.Facade;
-import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 
 public class DetalharProjetoServlet extends HttpServlet {

@@ -8,8 +8,8 @@ import br.ufpe.cin.rgms.base.Persistence;
 import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.membro.persistencia.DaoMembro;
-import br.ufpe.cin.rgms.util.StringsUtil;
-import br.ufpe.cin.rgms.util.Validation;
+//import br.ufpe.cin.rgms.util.StringsUtil;
+//import br.ufpe.cin.rgms.util.Validation;
 
 public class ControleMembro extends Controle<Membro,DaoMembro> {
 
@@ -22,8 +22,6 @@ public class ControleMembro extends Controle<Membro,DaoMembro> {
 
 		Membro retorno =  this.dao.getUsuario(email);
 		
-		DaoMembro daoMembro =  this.dao;
-
 		Persistence.getInstance().commit();
 
 		return retorno;

@@ -22,19 +22,19 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AdicionarPublicacaoServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
+	public String titulo, ano, autoresmembros, autoresnaomembros, tipo, conferencia, paginasconf, mes, jornal, 
+	volume, numero, paginas, universidade, mesdefesa, nivel;
+
 	public void logic() throws RGMSException {
 
 
 			String titulo = this.formfields.get("titulo");
 			String ano = this.formfields.get("ano");
-			String autoresMembros = this.formfields.get("autoresmembros");
-			List<Membro> membros = ListGenerator.createListaMembro(autoresMembros);
-			String autoresNaoMembros = this.formfields.get("autoresnaomembros");
-			List<String> naoMembros = ListGenerator.createListaNaoMembro(autoresNaoMembros);
-			byte[] pdfFile = this.file;
+			String autoresmembros = this.formfields.get("autoresmembros");
+			String autoresnaomembros = this.formfields.get("autoresnaomembros");
 			String tipo = this.formfields.get("tipo");
 			String conferencia = this.formfields.get("conferencia");
-			String paginasConf = this.formfields.get("paginasconf");
+			String paginasconf = this.formfields.get("paginasconf");
 			String mes = this.formfields.get("mes");
 			String jornal = this.formfields.get("jornal");
 			String volume = this.formfields.get("volume");
@@ -43,9 +43,12 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 			String universidade = this.formfields.get("universidade");
 			String mesdefesa = this.formfields.get("mesdefesa");
 			String nivel = this.formfields.get("nivel");
+			List<Membro> membros = ListGenerator.createListaMembro(autoresmembros);
+			List<String> naomembros = ListGenerator.createListaNaoMembro(autoresnaomembros);
+			byte[] pdfFile = this.file;
 #if ( $projetoPesquisa )
-			String projetostr = this.formfields.get("projeto");
-			Projeto projeto = Facade.getInstance().getProjeto(projetostr);
+			String projeto = this.formfields.get("projeto");
+			Projeto projetoobj = Facade.getInstance().getProjeto(projeto);
 #end
 
 			if (Facade.getInstance().getPublicacao(titulo) != null) {
@@ -55,10 +58,10 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				// Artigo em conferência
 				if (tipo.equals(MapeamentoTipo.CONFERENCIA)) {
 #if ( $projetoPesquisa )
-					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, projeto, conferencia, paginasConf, mes,
+					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naomembros, titulo, ano, pdfFile, projetoobj, conferencia, paginasconf, mes,
 							MapeamentoTipo.CONFERENCIA);
 #else
-					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, conferencia, paginasConf, mes,
+					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naomembros, titulo, ano, pdfFile, conferencia, paginasconf, mes,
 							MapeamentoTipo.CONFERENCIA);
 #end
 
@@ -68,10 +71,10 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				// Artigo periódico
 				if (tipo.equals(MapeamentoTipo.PERIODICO)) {
 #if ( $projetoPesquisa )
-					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, projeto, jornal, volume, numero, paginas,
+					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naomembros, titulo, ano, pdfFile, projetoobj, jornal, volume, numero, paginas,
 							MapeamentoTipo.PERIODICO);
 #else
-					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, jornal, volume, numero, paginas,
+					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naomembros, titulo, ano, pdfFile, jornal, volume, numero, paginas,
 							MapeamentoTipo.PERIODICO);
 #end
 					Facade.getInstance().inserirPublicacao(artigoPeriodico);
@@ -81,10 +84,10 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				if (tipo.equals(MapeamentoTipo.POSGRADUACAO)) {
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "mestrado"))) {
 #if ( $projetoPesquisa )
-						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, projetoobj, universidade, mesdefesa,
 								Nivel.MESTRADO, MapeamentoTipo.POSGRADUACAO);
 #else
-						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, universidade, mesdefesa,
 								Nivel.MESTRADO, MapeamentoTipo.POSGRADUACAO);
 #end
 						Facade.getInstance().inserirPublicacao(posGradM);
@@ -92,10 +95,10 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 					}
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "doutorado"))) {
 #if ( $projetoPesquisa )
-						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, projetoobj, universidade, mesdefesa,
 								Nivel.DOUTORADO, tipo);
 #else
-						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, universidade, mesdefesa,
 								Nivel.DOUTORADO, tipo);
 #end
 						Facade.getInstance().inserirPublicacao(posGradD);

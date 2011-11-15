@@ -14,6 +14,7 @@ import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 
 public class FiltrarPublicacoesServlet extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	private HashMap<String, String> formfieldsPersistente;
 
 	@Override

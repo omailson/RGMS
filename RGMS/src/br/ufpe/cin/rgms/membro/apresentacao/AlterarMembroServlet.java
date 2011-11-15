@@ -12,6 +12,7 @@ import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 
 public class AlterarMembroServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

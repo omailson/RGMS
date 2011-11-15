@@ -18,25 +18,28 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AlterarDadosMembroServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
+	public String nome, sobrenome, universidade, departamento, vinculo, situacao, email, orientador, 
+	coorientador, website, telefone, cidade, pais, emailoriginal;
+	
 	@Override
 	public void logic() throws RGMSException, FileUploadException {
 		String nome = this.formfields.get("nome");
 		String sobrenome = this.formfields.get("sobrenome");
 		String universidade = this.formfields.get("universidade");
 		String departamento = this.formfields.get("departamento");
-		String tipo = this.formfields.get("vinculo");
+		String vinculo = this.formfields.get("vinculo");
 		String situacao = this.formfields.get("situacao");
 		String email = this.formfields.get("email");
 		String orientador = this.formfields.get("orientador");
-		String coOrientador = this.formfields.get("coorientador");
+		String coorientador = this.formfields.get("coorientador");
 		String website = this.formfields.get("website");
 		String telefone = this.formfields.get("telefone");
 		String cidade = this.formfields.get("cidade");
 		String pais = this.formfields.get("pais");
+		String emailoriginal = this.formfields.get("emailoriginal");
 		byte[] foto = this.file;
-		String emailOriginal = this.formfields.get("emailoriginal");
 
-		Membro membroParaAlterar = Facade.getInstance().getMembro(emailOriginal);
+		Membro membroParaAlterar = Facade.getInstance().getMembro(emailoriginal);
 
 		if (!membroParaAlterar.getEmail().equals(email) && Facade.getInstance().getMembro(email) != null) {
 			request.setAttribute("membrostatus", Properties.getProperty(servletContext, "e_mail_ja_cadastrado"));
@@ -44,7 +47,7 @@ public class AlterarDadosMembroServlet extends AbstractServlet {
 			membroParaAlterar.setEmail(email);
 			membroParaAlterar.setNome(nome);
 			membroParaAlterar.setSobrenome(sobrenome);
-			membroParaAlterar.setTipo(tipo);
+			membroParaAlterar.setTipo(vinculo);
 			membroParaAlterar.setDepartamento(departamento);
 			membroParaAlterar.setUniversidade(universidade);
 			membroParaAlterar.setTelefone(telefone);
@@ -61,7 +64,7 @@ public class AlterarDadosMembroServlet extends AbstractServlet {
 				Estudante estudanteParaAlterar = (Estudante) membroParaAlterar;
 
 				estudanteParaAlterar.setOrientador(orientador);
-				estudanteParaAlterar.setCoOrientador(coOrientador);
+				estudanteParaAlterar.setCoOrientador(coorientador);
 
 				Facade.getInstance().alterarMembro(estudanteParaAlterar);
 			} else {

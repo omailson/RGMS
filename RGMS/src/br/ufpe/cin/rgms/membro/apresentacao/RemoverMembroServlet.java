@@ -13,6 +13,7 @@ import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.util.Properties;
 
 public class RemoverMembroServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -3,13 +3,11 @@ package br.ufpe.cin.rgms.publicacao.modelo;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,7 +22,8 @@ import br.ufpe.cin.rgms.publicacao.apresentacao.SFLString;
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames={"titulo"})})
 public abstract class Publicacao extends AbstractBusinessEntity implements Comparable<Publicacao>{ 
-
+	private static final long serialVersionUID = 1L;
+	
 	public final static String CONFERENCIA = "Artigo em Conferência";
 	
 	public final static String PERIODICO = "Artigo em Periódicos e Revistas";

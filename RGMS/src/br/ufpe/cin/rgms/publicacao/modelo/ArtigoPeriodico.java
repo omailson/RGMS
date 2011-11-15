@@ -10,6 +10,7 @@ import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 
 @Entity
 public class ArtigoPeriodico extends Publicacao {
+	private static final long serialVersionUID = 1L;
 	
 	private String jornal;
 	

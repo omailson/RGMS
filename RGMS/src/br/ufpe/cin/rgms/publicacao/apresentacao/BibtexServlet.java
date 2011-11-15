@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.publicacao.Bibtex;
-import br.ufpe.cin.rgms.publicacao.MapeamentoTipo;
 import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 
 public class BibtexServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

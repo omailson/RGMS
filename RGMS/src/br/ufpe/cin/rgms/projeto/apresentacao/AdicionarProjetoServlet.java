@@ -15,7 +15,8 @@ import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 import br.ufpe.cin.rgms.util.Properties;
 
 public class AdicionarProjetoServlet extends AbstractServlet{
-
+	private static final long serialVersionUID = 1L;
+	
 	@Override
 	public void logic() throws RGMSException, FileUploadException {
 		if(Facade.getInstance().getProjeto(this.formfields.get("nome")) != null){

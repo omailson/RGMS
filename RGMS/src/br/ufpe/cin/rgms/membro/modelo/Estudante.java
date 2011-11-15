@@ -9,7 +9,8 @@ import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 
 @Entity
 public class Estudante extends Membro{
-	
+	private static final long serialVersionUID = 1L;
+
 	private String orientador;
 	
 	private String coOrientador;

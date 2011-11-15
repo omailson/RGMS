@@ -6,7 +6,6 @@ import java.util.List;
 import br.ufpe.cin.rgms.base.Controle;
 import br.ufpe.cin.rgms.base.Persistence;
 import br.ufpe.cin.rgms.base.RGMSException;
-import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 import br.ufpe.cin.rgms.publicacao.persistencia.DaoPublicacao;
 

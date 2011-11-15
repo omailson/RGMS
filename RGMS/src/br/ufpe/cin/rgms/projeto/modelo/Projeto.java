@@ -10,7 +10,8 @@ import br.ufpe.cin.rgms.base.AbstractBusinessEntity;
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames={"nome"})})
 public class Projeto extends AbstractBusinessEntity implements Comparable<Projeto> {
-
+	private static final long serialVersionUID = 1L;
+	
 	protected String nome;
 	protected String descricao;
 	

@@ -2,16 +2,12 @@ package br.ufpe.cin.rgms.publicacao;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.UUID;
 
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia;
@@ -41,7 +37,7 @@ public class Bibtex {
 		propriedades.put("title", titulo);
 		propriedades.put("year", publicacao.getAno());
 
-		// Constrói string de autores no formato bibtex blabla, blab and
+		// Constrï¿½i string de autores no formato bibtex blabla, blab and
 		// blabla2, blabla
 		List<Membro> autores = publicacao.getAutores();
 		StringBuilder membrosBuilder = new StringBuilder();
@@ -54,8 +50,8 @@ public class Bibtex {
 			}
 		}
 
-		// Constrói string de autores não-membros e caso contenha algum
-		// conteúdo, é concatenada com a string de autores membros
+		// Constrï¿½i string de autores nï¿½o-membros e caso contenha algum
+		// conteï¿½do, ï¿½ concatenada com a string de autores membros
 		StringBuilder naoMembrosBuilder = new StringBuilder();
 		List<String> autoresNaoMembros = publicacao.getAutoresNaoMembros();
 		Iterator<String> iterator = autoresNaoMembros.iterator();

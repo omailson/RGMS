@@ -13,6 +13,7 @@ import br.ufpe.cin.rgms.publicacao.modelo.Publicacao;
 import br.ufpe.cin.rgms.util.Properties;
 
 public class RemoverPublicacaoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -22,19 +22,19 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AdicionarPublicacaoServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
+	public String titulo, ano, autoresmembros, autoresnaomembros, tipo, conferencia, paginasconf, mes, jornal, 
+	volume, numero, paginas, universidade, mesdefesa, nivel;
+
 	public void logic() throws RGMSException {
 
 
 			String titulo = this.formfields.get("titulo");
 			String ano = this.formfields.get("ano");
-			String autoresMembros = this.formfields.get("autoresmembros");
-			List<Membro> membros = ListGenerator.createListaMembro(autoresMembros);
-			String autoresNaoMembros = this.formfields.get("autoresnaomembros");
-			List<String> naoMembros = ListGenerator.createListaNaoMembro(autoresNaoMembros);
-			byte[] pdfFile = this.file;
+			String autoresmembros = this.formfields.get("autoresmembros");
+			String autoresnaomembros = this.formfields.get("autoresnaomembros");
 			String tipo = this.formfields.get("tipo");
 			String conferencia = this.formfields.get("conferencia");
-			String paginasConf = this.formfields.get("paginasconf");
+			String paginasconf = this.formfields.get("paginasconf");
 			String mes = this.formfields.get("mes");
 			String jornal = this.formfields.get("jornal");
 			String volume = this.formfields.get("volume");
@@ -43,8 +43,11 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 			String universidade = this.formfields.get("universidade");
 			String mesdefesa = this.formfields.get("mesdefesa");
 			String nivel = this.formfields.get("nivel");
-			String projetostr = this.formfields.get("projeto");
-			Projeto projeto = Facade.getInstance().getProjeto(projetostr);
+			List<Membro> membros = ListGenerator.createListaMembro(autoresmembros);
+			List<String> naomembros = ListGenerator.createListaNaoMembro(autoresnaomembros);
+			byte[] pdfFile = this.file;
+			String projeto = this.formfields.get("projeto");
+			Projeto projetoobj = Facade.getInstance().getProjeto(projeto);
 
 			if (Facade.getInstance().getPublicacao(titulo) != null) {
 				request.setAttribute("insertpublicacaostatus", Properties.getProperty(servletContext, "titulo_ja_cadastrado"));
@@ -52,7 +55,7 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				boolean insertionFlag = false;
 				// Artigo em conferÃªncia
 				if (tipo.equals(MapeamentoTipo.CONFERENCIA)) {
-					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naoMembros, titulo, ano, pdfFile, projeto, conferencia, paginasConf, mes,
+					ArtigoConferencia artigoConf = new ArtigoConferencia(membros, naomembros, titulo, ano, pdfFile, projetoobj, conferencia, paginasconf, mes,
 							MapeamentoTipo.CONFERENCIA);
 
 					Facade.getInstance().inserirPublicacao(artigoConf);
@@ -60,7 +63,7 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				}
 				// Artigo periÃ³dico
 				if (tipo.equals(MapeamentoTipo.PERIODICO)) {
-					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naoMembros, titulo, ano, pdfFile, projeto, jornal, volume, numero, paginas,
+					ArtigoPeriodico artigoPeriodico = new ArtigoPeriodico(membros, naomembros, titulo, ano, pdfFile, projetoobj, jornal, volume, numero, paginas,
 							MapeamentoTipo.PERIODICO);
 					Facade.getInstance().inserirPublicacao(artigoPeriodico);
 					insertionFlag = true;
@@ -68,13 +71,13 @@ public class AdicionarPublicacaoServlet extends AbstractServlet {
 				// PÃ³s graduaÃ§Ã£o
 				if (tipo.equals(MapeamentoTipo.POSGRADUACAO)) {
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "mestrado"))) {
-						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradM = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, projetoobj, universidade, mesdefesa,
 								Nivel.MESTRADO, MapeamentoTipo.POSGRADUACAO);
 						Facade.getInstance().inserirPublicacao(posGradM);
 						insertionFlag = true;
 					}
 					if (nivel.equals(Properties.getProperty(this.getServletContext(), "doutorado"))) {
-						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naoMembros, titulo, ano, pdfFile, projeto, universidade, mesdefesa,
+						PublicacaoPosGraduacao posGradD = new PublicacaoPosGraduacao(membros, naomembros, titulo, ano, pdfFile, projetoobj, universidade, mesdefesa,
 								Nivel.DOUTORADO, tipo);
 						Facade.getInstance().inserirPublicacao(posGradD);
 						insertionFlag = true;

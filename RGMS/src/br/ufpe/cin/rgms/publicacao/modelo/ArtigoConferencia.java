@@ -10,7 +10,8 @@ import br.ufpe.cin.rgms.projeto.modelo.Projeto;
 
 @Entity
 public class ArtigoConferencia extends Publicacao {
-	
+	private static final long serialVersionUID = 1L;
+		
 	private String conferencia;
 	
 	private String paginasConf;

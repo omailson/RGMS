@@ -22,25 +22,28 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
+	public String titulo, ano, autoresmembros, autoresnaomembros, conferencia, paginasconf,
+	mes, jornal, volume, numero, paginas, universidade, mesdefesa;
+	
 	@Override
 	public void logic() throws RGMSException, FileUploadException {
 
-		byte[] pdfFile = this.file;
 		String titulo = this.formfields.get("titulo");
 		String ano = this.formfields.get("ano");
-		String autoresMembros = this.formfields.get("autoresmembros");
-		List<Membro> membros = ListGenerator.createListaMembro(autoresMembros);
-		String autoresNaoMembros = this.formfields.get("autoresnaomembros");
-		List<String> naoMembros = ListGenerator.createListaNaoMembro(autoresNaoMembros);
+		String autoresmembros = this.formfields.get("autoresmembros");
+		String autoresnaomembros = this.formfields.get("autoresnaomembros");
 		String conferencia = this.formfields.get("conferencia");
-		String paginasConf = this.formfields.get("paginasconf");
+		String paginasconf = this.formfields.get("paginasconf");
 		String mes = this.formfields.get("mes");
 		String jornal = this.formfields.get("jornal");
 		String volume = this.formfields.get("volume");
 		String numero = this.formfields.get("numero");
 		String paginas = this.formfields.get("paginas");
 		String universidade = this.formfields.get("universidade");
-		String mesDefesa = this.formfields.get("mesdefesa");
+		String mesdefesa = this.formfields.get("mesdefesa");
+		List<Membro> membros = ListGenerator.createListaMembro(autoresmembros);
+		List<String> naomembros = ListGenerator.createListaNaoMembro(autoresnaomembros);
+		byte[] pdfFile = this.file;
 		//String nivel = this.formfields.get("nivel");
 		//String tituloNovo = this.formfields.get("titulonovo");
 
@@ -55,7 +58,7 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 
 		publicacaoParaAlterar.setAno(ano);
 		publicacaoParaAlterar.setAutores(membros);
-		publicacaoParaAlterar.setAutoresNaoMembros(naoMembros);
+		publicacaoParaAlterar.setAutoresNaoMembros(naomembros);
 		publicacaoParaAlterar.setTitulo(titulo);
 
 		if (pdfFile != null) {
@@ -66,7 +69,7 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 			ArtigoConferencia artigoParaAlterar = (ArtigoConferencia) publicacaoParaAlterar;
 
 			artigoParaAlterar.setConferencia(conferencia);
-			artigoParaAlterar.setPaginas(paginasConf);
+			artigoParaAlterar.setPaginas(paginasconf);
 			artigoParaAlterar.setMes(mes);
 
 			Facade.getInstance().alterarPublicacao(artigoParaAlterar);
@@ -85,7 +88,7 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 			PublicacaoPosGraduacao publicacaoPosParaAlterar = (PublicacaoPosGraduacao) publicacaoParaAlterar;
 
 			publicacaoPosParaAlterar.setUniversidade(universidade);
-			publicacaoPosParaAlterar.setMes(mesDefesa);
+			publicacaoPosParaAlterar.setMes(mesdefesa);
 			/*
 			 * if(nivel.equals("Mestrado")){
 			 * publicacaoPosParaAlterar.setNivel(Nivel.MESTRADO); } else{
