@@ -2,10 +2,11 @@
 
 
 <%@page import="br.ufpe.cin.rgms.projeto.modelo.Projeto"%>
-<%@page import="java.util.regex.Pattern"%><html>
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
 
 <% ServletContext servletContext = getServletContext(); %>
+
+<html>
 
 <head>
 <title><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></title>
@@ -23,40 +24,31 @@
 			<h1><a href="home.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></a></h1>
 		</div>
 		<div id="menulinks">
-
-
-    <a href="home.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"home"));%></a>
-    <a href="membros.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"membros"));%></a>
-    <a class="active" href="projetos.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"projetos"));%></a>
-    <a href="publicacoes.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"publicacoes"));%></a>
-    <a href="contato.jsp"><%out.println(Properties.getProperty(this.getServletContext(),"contato"));%></a>
-
+#menu ( "projetos" )
 		</div>
 	</div>
 	
 	<div id="contentarea">
-		<h2><%out.println(Properties.getProperty(this.getServletContext(),"alterar"));%></h2>
-		<% Projeto projeto = ((Projeto) request.getAttribute("projetoalterar"));
-		 %>
+		<h2><%out.println(Properties.getProperty(this.getServletContext(),"cadastro"));%></h2>
+		<p><%out.println(Properties.getProperty(this.getServletContext(),"preenche_projeto"));%></p>
 		
-		<p><%out.println(Properties.getProperty(this.getServletContext(),"alterar_dados_projeto"));%></p>
-		
-		<FORM name="alterarprojeto" action="AlterarDadosProjeto.do" method="post" enctype="multipart/form-data">
+		<FORM name="cadastroprojeto" action="AdicionarProjeto.do" method="post" enctype="multipart/form-data">
     		<p>
     			<LABEL for="nome"><%out.println(Properties.getProperty(this.getServletContext(),"nome"));%> </LABEL>
-            	<INPUT onkeypress="return noenter();" type="text" name="nome" size="30" value="<% out.print(projeto.getNome()); %>">
-              	<input type="hidden" name="nomeoriginal" value="<% out.print(projeto.getNome()); %>">        	
+            	<INPUT onkeypress="return noenter();" type="text" name="nome" size="60">
     			
     			<LABEL for="descricao"> <%out.println(Properties.getProperty(this.getServletContext(),"descricao"));%> </LABEL>
-              	<INPUT onkeypress="return noenter();" type="text" name="descricao" maxlength="300" value="<% out.print(projeto.getDescricao()); %>">
+              	<TEXTAREA onkeypress="return noenter();" type="text" name="descricao" maxlength="300" rows="10" cols="40"></TEXTAREA>
               	
             </p>
-            
             <p>
               	<br>
-    			<INPUT onclick="validarCampos();" name="cadastrar" value=<%out.println(Properties.getProperty(this.getServletContext(),"concluir"));%> type="submit">
+             
+    			<INPUT onclick="validarCampos();" name="cadastrar"  value=<%out.println(Properties.getProperty(this.getServletContext(),"cadastrar"));%> type="button">
     			<INPUT value=<%out.println(Properties.getProperty(this.getServletContext(),"limpar"));%> type="reset">
+    		
     		</p>
+    		<p>*<%out.println(Properties.getProperty(this.getServletContext(),"novo_projeto_aviso"));%></p>
  		</FORM>
 	</div>
 	
@@ -75,22 +67,20 @@
   		return !(window.event && window.event.keyCode == 13);
 	}
 
-
 	function validarCampos(){ 
-		if (document.alterarprojeto.nome.value.length==0){ 
+		if (document.cadastroprojeto.nome.value.length==0){ 
       	 	alert("<%Properties.getProperty(servletContext,"js_nome_invalid");%>");
-      	 	document.alterarprojeto.nome.focus();
-      	 
-      	 	return false; 
-   		} 
-   		if (document.alterarprojeto.descricao.value.length==0){ 
-      	 	alert("<%Properties.getProperty(servletContext,"js_descricao_invalid");%>");
-      	 	document.alterarprojeto.descricao.focus();
+      	 	document.cadastroprojeto.nome.focus();
       	 
       	 	return false; 
    		}
-   		
-   		document.alterarprojeto.submit();
+		if (document.cadastroprojeto.descricao.value.length==0){ 
+      	 	alert("<%Properties.getProperty(servletContext,"js_descricao_invalid");%>");
+      	 	document.cadastroprojeto.descricao.focus();
+      	 
+      	 	return false; 
+   		} 
+   		document.cadastroprojeto.submit();
 	}
 </script>
 
