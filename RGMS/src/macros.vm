@@ -1,5 +1,0 @@
-#macro( createModels $classes)
-#foreach( $item in $classes )
-		<mapping class="${item}"/>
-#end
-#end
