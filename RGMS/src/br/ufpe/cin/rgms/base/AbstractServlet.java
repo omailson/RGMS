@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import br.ufpe.cin.rgms.base.RGMSException;
-import br.ufpe.cin.rgms.util.Properties;
 
 public abstract class AbstractServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

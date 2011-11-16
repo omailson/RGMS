@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+#if ( $projetoPesquisa )
 import javax.persistence.ManyToOne;
+#end
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -15,7 +17,9 @@ import org.hibernate.annotations.CollectionOfElements;
 
 import br.ufpe.cin.rgms.base.AbstractBusinessEntity;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+#if ( $projetoPesquisa )
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
+#end
 import br.ufpe.cin.rgms.publicacao.apresentacao.SFLMembro;
 import br.ufpe.cin.rgms.publicacao.apresentacao.SFLString;
 

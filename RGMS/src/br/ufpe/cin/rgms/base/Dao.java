@@ -7,13 +7,13 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 public abstract class Dao<T> {
-	protected final Class classe;
+	protected final Class<T> classe;
 	
 	protected abstract String getFirstAtributoDeOrdenacao();
 	
 	protected abstract String getSecondAtributoDeOrdenacao();
 
-	public Dao(Class classe){
+	public Dao(Class<T> classe){
 		this.classe = classe;
 	}
 

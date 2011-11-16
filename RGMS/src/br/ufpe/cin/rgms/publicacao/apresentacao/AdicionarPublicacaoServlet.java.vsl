@@ -11,7 +11,9 @@ import br.ufpe.cin.rgms.Facade;
 import br.ufpe.cin.rgms.base.AbstractServlet;
 import br.ufpe.cin.rgms.base.RGMSException;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+#if ( $projetoPesquisa )
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
+#end
 import br.ufpe.cin.rgms.publicacao.MapeamentoTipo;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia;
 import br.ufpe.cin.rgms.publicacao.modelo.ArtigoPeriodico;

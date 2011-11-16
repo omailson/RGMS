@@ -11,15 +11,8 @@
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres/rgms</property>  
 		<property name="hibernate.connection.username">postgres</property>  
 		<property name="hibernate.connection.password">123</property>
-    	
-    	<mapping class="br.ufpe.cin.rgms.membro.modelo.Membro"/>
-    	<mapping class="br.ufpe.cin.rgms.membro.modelo.Estudante"/>
-#if ( $projetoPesquisa )
-    	<mapping class="br.ufpe.cin.rgms.projeto.modelo.Projeto"/>
-#end
-    	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.Publicacao"/>
-    	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.ArtigoConferencia"/>
-    	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.PublicacaoPosGraduacao"/>
-    	<mapping class="br.ufpe.cin.rgms.publicacao.modelo.ArtigoPeriodico"/>
+		
+#createModels( $classes )
+
     </session-factory>
 </hibernate-configuration>

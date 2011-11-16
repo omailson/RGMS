@@ -6,7 +6,9 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 
 import br.ufpe.cin.rgms.membro.modelo.Membro;
+#if ( $projetoPesquisa )
 import br.ufpe.cin.rgms.projeto.modelo.Projeto;
+#end
 
 @Entity
 public class ArtigoConferencia extends Publicacao {
