@@ -15,12 +15,6 @@ import br.ufpe.cin.rgms.membro.modelo.Estudante;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.util.Properties;
 
-#macro(formfields $fields)
-#foreach($field in $fields)
-		String $field = this.formfields.get("$field");
-#end
-#end
-
 public class AlterarDadosMembroServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 

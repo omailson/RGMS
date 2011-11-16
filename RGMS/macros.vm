@@ -13,3 +13,10 @@
 #end
 
 #end
+
+#macro(formfields $fields)
+#foreach($field in $fields)
+		String $field = this.formfields.get("$field");
+#end
+#end
+

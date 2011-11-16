@@ -2,7 +2,9 @@ package preprocessor;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.annotation.Annotation;
 import java.net.URLClassLoader;
@@ -17,54 +19,59 @@ import org.apache.velocity.VelocityContext;
 
 public class PreProcessor {
 
-	private String properties;
+	private String pathName;
+	private String propertyFile;
+	private Properties properties;
 	private ArrayList<String> classes;
+	private VelocityContext context;
 	
-	public void preProcess(String filePropertyPath, String filePath) throws Exception{
+	public PreProcessor(String properties, String path) throws IOException {
+		this.setProperties(properties);
+		this.setPath(path);
 		
+		this.init();
+	}
+	
+	public void init() throws FileNotFoundException, IOException {
 		//Loading properties
-		File fileProperty = new File(filePropertyPath);
+		File fileProperty = new File(this.propertyFile);
 
-		Properties properties = new Properties();
+		this.properties = new Properties();
 
-		properties.load(new FileInputStream(fileProperty));
-
-		Set<Object> keySet = properties.keySet();
-
-		VelocityContext context = new VelocityContext();
+		this.properties.load(new FileInputStream(fileProperty));
+		this.properties.put("file.resource.loader.path", this.pathName);
+		this.properties.put("file.resource.loader.cache ","true");
+		this.properties.put("file.resource.loader.modificationCheckInterval ","10000");
+		this.properties.put("velocimacro.library", "macros.vm");
+		
+		Set<Object> keySet = this.properties.keySet();
+		
+		this.context = new VelocityContext();
 
 		for(Object obj : keySet){
-			context.put(obj.toString(), properties.getProperty(obj.toString()));
+			context.put(obj.toString(), this.properties.getProperty(obj.toString()));
 		}
-
-		context.put("classes", this.classes);
-		
+	}
+	
+	public void preProcess(String filePath) throws Exception{
 		/*  first, get and initialize an engine  */
-		VelocityEngine ve = new VelocityEngine();
+		VelocityEngine ve = new VelocityEngine(this.properties);
 
 		File fileToPreProcess = new File(filePath);
 
-		Properties p = new Properties(); 
-
-		p.put("file.resource.loader.path",fileToPreProcess.getParent());  
-		p.put("file.resource.loader.cache ","true");  
-		p.put("file.resource.loader.modificationCheckInterval ","10000");
-		File macrosVM = new File(fileToPreProcess.getParent() + File.separator + "macros.vm");
-		if (macrosVM.exists())
-			p.put("velocimacro.library", "macros.vm");
+		Properties p = new Properties();
 
 		ve.init(p);
 
 		/*  next, get the Template  */
-		Template t = ve.getTemplate(fileToPreProcess.getName());
-
+		Template t = ve.getTemplate(fileToPreProcess.getPath());
 		/* now render the template into a StringWriter */
 		StringWriter writer = new StringWriter();
 		t.merge(context, writer);
 
 		String[] path = filePath.split("\\.[^\\.]*$");
 
-		FileWriter fileResult = new FileWriter(new File(path[0]));
+		FileWriter fileResult = new FileWriter(new File(joinPath(this.pathName, path[0])));
 		fileResult.write(writer.toString());
 		fileResult.close();
 	}
@@ -88,28 +95,27 @@ public class PreProcessor {
 		}
 		
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public void recursive(String diretorio) throws Exception{
 		
-		File dir = new File(diretorio); 
+		File dir = new File(joinPath(this.pathName, diretorio)); 
 		if(dir.isDirectory()){
 			File list[] = dir.listFiles(); 
 			
 			for(File arq : list){
 				
 				if(arq.isDirectory()){
-					recursive(arq.getAbsolutePath());
+					recursive(joinPath(diretorio, arq.getName()));
 				}
 				
 				if(arq.isFile()){
 					if(arq.getName().matches(".*\\.vsl$")){
-						System.out.println(arq.getAbsolutePath());
+						System.out.println(joinPath(diretorio, arq.getName()));
 						if(!arq.getName().equals("hibernate.cfg.xml.vsl"))
-							preProcess(properties,arq.getAbsolutePath());
+							preProcess(joinPath(diretorio, arq.getName()));
 					}
 					if(arq.getName().matches(".*\\.class$")){
 						getEntities(arq.getAbsolutePath());
@@ -119,16 +125,34 @@ public class PreProcessor {
 			}
 
 		}else{
-			preProcess(properties,dir.getAbsolutePath());
+			preProcess(joinPath(diretorio, dir.getName()));
 		}
 	}
 	
 	public void setProperties(String pro){
-		this.properties = pro;
+		this.propertyFile = pro;
 	}
 	
 	public String getProperties(){
-		return this.properties;
+		return this.propertyFile;
+	}
+	
+	public void setPath(String path) throws IOException {
+		File pathFile = new File(path);
+		this.pathName = pathFile.getCanonicalPath();
+	}
+	
+	public String getPath() {
+		return this.pathName;
+	}
+	
+	public void setClasses(ArrayList<String> classes) {
+		this.classes = classes;
+		this.context.put("classes", this.classes);
+	}
+	
+	private static String joinPath(String path, String base) {
+		return path + File.separator + base;
 	}
 
 
@@ -136,17 +160,13 @@ public class PreProcessor {
 		try {
 			args[0] = args[0].replaceAll(Pattern.quote("\\"), "/");
 			args[1] = args[1].replaceAll(Pattern.quote("\\"), "/");
-
-
-			PreProcessor preProcessor = new PreProcessor();
-			preProcessor.setProperties(args[0]);
-
-			preProcessor.classes = new ArrayList<String>();
 			
-			preProcessor.recursive(args[1]);
+			PreProcessor preProcessor = new PreProcessor(args[0], args[1]);
+			preProcessor.setClasses(new ArrayList<String>());
 			
-			File arq = new File(args[1]+"/src/hibernate.cfg.xml.vsl");
-			preProcessor.preProcess(preProcessor.properties,arq.getAbsolutePath());
+			preProcessor.recursive(".");
+			
+			preProcessor.preProcess("./src/hibernate.cfg.xml.vsl");
 			
 
 		} catch (Exception e) {

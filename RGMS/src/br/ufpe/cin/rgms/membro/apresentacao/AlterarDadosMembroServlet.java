@@ -15,7 +15,6 @@ import br.ufpe.cin.rgms.membro.modelo.Estudante;
 import br.ufpe.cin.rgms.membro.modelo.Membro;
 import br.ufpe.cin.rgms.util.Properties;
 
-
 public class AlterarDadosMembroServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
