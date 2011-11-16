@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+	<template autoinsert="true" context="java" deleted="false" description="Form Field" enabled="true" name="field">this.formfields.get("${name}");${cursor}</template>
+</templates>
