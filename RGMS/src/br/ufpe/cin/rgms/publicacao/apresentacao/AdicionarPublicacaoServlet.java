@@ -22,27 +22,24 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AdicionarPublicacaoServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
 
-	public String titulo, ano, autoresmembros, autoresnaomembros, tipo, conferencia, paginasconf, mes, jornal, 
-	volume, numero, paginas, universidade, mesdefesa, nivel;
-
 	public void logic() throws RGMSException {
 
+		String titulo = this.formfields.get("titulo");
+		String ano = this.formfields.get("ano");
+		String autoresmembros = this.formfields.get("autoresmembros");
+		String autoresnaomembros = this.formfields.get("autoresnaomembros");
+		String tipo = this.formfields.get("tipo");
+		String conferencia = this.formfields.get("conferencia");
+		String paginasconf = this.formfields.get("paginasconf");
+		String mes = this.formfields.get("mes");
+		String jornal = this.formfields.get("jornal");
+		String volume = this.formfields.get("volume");
+		String numero = this.formfields.get("numero");
+		String paginas = this.formfields.get("paginas");
+		String universidade = this.formfields.get("universidade");
+		String mesdefesa = this.formfields.get("mesdefesa");
+		String nivel = this.formfields.get("nivel");
 
-			String titulo = this.formfields.get("titulo");
-			String ano = this.formfields.get("ano");
-			String autoresmembros = this.formfields.get("autoresmembros");
-			String autoresnaomembros = this.formfields.get("autoresnaomembros");
-			String tipo = this.formfields.get("tipo");
-			String conferencia = this.formfields.get("conferencia");
-			String paginasconf = this.formfields.get("paginasconf");
-			String mes = this.formfields.get("mes");
-			String jornal = this.formfields.get("jornal");
-			String volume = this.formfields.get("volume");
-			String numero = this.formfields.get("numero");
-			String paginas = this.formfields.get("paginas");
-			String universidade = this.formfields.get("universidade");
-			String mesdefesa = this.formfields.get("mesdefesa");
-			String nivel = this.formfields.get("nivel");
 			List<Membro> membros = ListGenerator.createListaMembro(autoresmembros);
 			List<String> naomembros = ListGenerator.createListaNaoMembro(autoresnaomembros);
 			byte[] pdfFile = this.file;

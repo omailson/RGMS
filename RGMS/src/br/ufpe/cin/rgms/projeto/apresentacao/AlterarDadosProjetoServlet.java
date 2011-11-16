@@ -17,13 +17,11 @@ import br.ufpe.cin.rgms.util.Properties;
 public class AlterarDadosProjetoServlet extends AbstractServlet{
 	private static final long serialVersionUID = 1L;
 
-	String nome, descricao, nomeoriginal;
-	
 		@Override
 		public void logic() throws RGMSException, FileUploadException {
-			String nome = this.formfields.get("nome");
-			String descricao = this.formfields.get("descricao");
-			String nomeoriginal = this.formfields.get("nomeoriginal");
+		String nome = this.formfields.get("nome");
+		String descricao = this.formfields.get("descricao");
+		String nomeoriginal = this.formfields.get("nomeoriginal");
 
 			Projeto projetoParaAlterar = Facade.getInstance().getProjeto(nomeoriginal);
 

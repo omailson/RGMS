@@ -25,19 +25,7 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 	@Override
 	public void logic() throws RGMSException, FileUploadException {
 
-		String titulo = this.formfields.get("titulo");
-		String ano = this.formfields.get("ano");
-		String autoresmembros = this.formfields.get("autoresmembros");
-		String autoresnaomembros = this.formfields.get("autoresnaomembros");
-		String conferencia = this.formfields.get("conferencia");
-		String paginasconf = this.formfields.get("paginasconf");
-		String mes = this.formfields.get("mes");
-		String jornal = this.formfields.get("jornal");
-		String volume = this.formfields.get("volume");
-		String numero = this.formfields.get("numero");
-		String paginas = this.formfields.get("paginas");
-		String universidade = this.formfields.get("universidade");
-		String mesdefesa = this.formfields.get("mesdefesa");
+#formfields ( ["titulo", "ano", "autoresmembros", "autoresnaomembros", "conferencia", "paginasconf", "mes", "jornal", "volume", "numero", "paginas", "universidade", "mesdefesa"] )
 
 		List<Membro> membros = ListGenerator.createListaMembro(autoresmembros);
 		List<String> naomembros = ListGenerator.createListaNaoMembro(autoresnaomembros);
@@ -51,7 +39,7 @@ public class AlterarDadosPublicacaoServlet extends AbstractServlet {
 		 * if (!publicacaoParaAlterar.getTitulo().equals(titulo) &&
 		 * Facade.getInstance().getPublicacao(titulo) != null) {
 		 * request.setAttribute("publicacaostatus",
-		 * "O tï¿½tulo fornecido jï¿½ foi cadastrado no sistema."); } else {
+		 * "O t�tulo fornecido j� foi cadastrado no sistema."); } else {
 		 */
 
 		publicacaoParaAlterar.setAno(ano);
