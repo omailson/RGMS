@@ -6,9 +6,10 @@ import br.ufpe.cin.rgms.base.Persistence;
 public aspect Transaction {
 
 	pointcut transaction() : 
-		execution(* *(..))
-		&& within(Controle)
-		&& !withincode(Controle.new(..));
+		(execution(* *(..))
+		&& within(Controle+)
+		&& !execution(Controle+.new(..)))
+		&& !execution(* validar(..));
 	
 	before(): transaction() {
 		Persistence.getInstance().beginTransaction();

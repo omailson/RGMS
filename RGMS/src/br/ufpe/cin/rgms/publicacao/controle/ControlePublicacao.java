@@ -16,22 +16,12 @@ public class ControlePublicacao extends Controle<Publicacao,DaoPublicacao> {
 	}
 
 	public boolean exists(Publicacao publication) {
-		Persistence.getInstance().beginTransaction();
-		
 		boolean retorno = this.dao.exists(publication);
-		
-		Persistence.getInstance().commit();
-		
 		return retorno;
 	}
 
 	public Publicacao getPublicacao(String titulo) {
-		Persistence.getInstance().beginTransaction();
-		
 		Publicacao retorno =  this.dao.getPublicacao(titulo);
-		
-		Persistence.getInstance().commit();
-		
 		return retorno;
 	}
 
@@ -45,22 +35,12 @@ public class ControlePublicacao extends Controle<Publicacao,DaoPublicacao> {
 	}
 
 	public Publicacao getPublicacao(int idPublicacao) {
-		Persistence.getInstance().beginTransaction();
-		
 		Publicacao retorno =  this.dao.getPublicacao(idPublicacao);
-		
-		Persistence.getInstance().commit();
-		
 		return retorno;
 	}
 	
 	public List<Publicacao> getPublicacoes(HashMap<String, String> formfields) {
-		Persistence.getInstance().beginTransaction();
-		
 		List<Publicacao> retorno =  this.dao.getPublicacoes(formfields);
-		
-		Persistence.getInstance().commit();
-		
 		return retorno;
 	}
 }

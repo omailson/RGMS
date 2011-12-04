@@ -18,12 +18,7 @@ public class ControleMembro extends Controle<Membro,DaoMembro> {
 	}
 
 	public Membro getUsuario(String email) {
-		Persistence.getInstance().beginTransaction();
-
 		Membro retorno =  this.dao.getUsuario(email);
-		
-		Persistence.getInstance().commit();
-
 		return retorno;
 	}
 
@@ -35,12 +30,7 @@ public class ControleMembro extends Controle<Membro,DaoMembro> {
 	}
 
 	public List<Membro> getMembros(HashMap<String, String> formfields) {
-		Persistence.getInstance().beginTransaction();
-
 		List<Membro> retorno =  this.dao.getMembros(formfields);
-
-		Persistence.getInstance().commit();
-
 		return retorno;
 	}
 }
