@@ -32,12 +32,27 @@ public class GerarBanco {
 
 	public static void popularBanco() {
 		try {
-			Projeto p1 = new Projeto("Grupo AEIOU", "O grupo estuda os conceitos de grupos de pesquisa");
+			Projeto p1 = new Projeto("Grupo MySQL", "O grupo estuda os conceitos de grupos de pesquisa");
 			Facade.getInstance().inserirProjeto(p1);
-			
 			Projeto p3 = new Projeto("CIn Labs", "Grupo de estudo do comportamento das redes do CIn");
 			Facade.getInstance().inserirProjeto(p3);
-			
+			Estudante e0 = new Estudante(
+					"mySQL@cin.ufpe.br", 
+					"MySQL", 
+					"SGBD", 
+					"Estudante", 
+					"CIn", 
+					"UFPE", 
+					"8135555555", 
+					"http://MYSQL/", 
+					"Recife", 
+					"Brasil", 
+					"Ativo", 
+					null, 
+					null, 
+					"Fulano de Tal", 
+					"Sicrano");
+			Facade.getInstance().inserirMembro(e0);
 			Estudante e1 = new Estudante(
 					"mdlm@cin.ufpe.br", 
 					"Mailson", 

@@ -4,13 +4,18 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+#if ( $bancoDeDados == 'mysql' )
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/rgms</property>
+#else
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres/rgms</property>
+#end
         <property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost/postgres/rgms</property>  
 		<property name="hibernate.connection.username">postgres</property>  
-		<property name="hibernate.connection.password">123</property>
+		<property name="hibernate.connection.password">postgres</property>
 		
 #createModels( $classes )
 

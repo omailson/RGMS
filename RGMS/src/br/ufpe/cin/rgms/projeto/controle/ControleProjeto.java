@@ -17,6 +17,8 @@ public class ControleProjeto extends Controle<Projeto, DaoProjeto> {
 
 	@Override
 	protected void validar(Projeto tipo) throws RGMSException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public Projeto getProjeto(String nome) {
