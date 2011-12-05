@@ -9,6 +9,7 @@
 <html>
 
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></title>
 <LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
 </head>
