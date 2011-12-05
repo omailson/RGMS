@@ -25,3 +25,24 @@
 		<mapping class="${item}"/>
 #end
 #end
+
+#macro(localemenu)
+#if ($localizacao)
+#set($locales = [["en", "US"], ["pt", "BR"]])
+<ul id="localeselect">
+	#foreach($locale in $locales)
+	<li><a href="?language=${locale.get(0)}&country=${locale.get(1)}">${locale.get(0)}</a></li>
+	#end
+</ul>
+#end
+#end
+
+#macro(localeset)
+	#if ($localizacao)
+	<% 
+	if (request.getParameter("language") != null && request.getParameter("country") != null) {
+		Properties.setLocale(request.getParameter("language"), request.getParameter("country")); 
+	}
+	%>
+	#end
+#end

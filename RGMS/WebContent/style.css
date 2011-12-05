@@ -147,4 +147,17 @@ text-decoration:underline;
 	width: 560px;
 }
 
+ul#localeselect {
+	list-style-type: none;
+	padding-right: 50px;
+}
+
+ul#localeselect li {
+	float: right;
+	padding: 0.5em;
+}
+
+ul#localeselect li a {
+	color: #fff;
+}
 
