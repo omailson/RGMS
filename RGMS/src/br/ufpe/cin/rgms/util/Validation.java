@@ -10,10 +10,10 @@ import java.util.regex.Pattern;
 
 import br.ufpe.cin.rgms.base.IValidator;
 
-public class Validation<T> {
-	private T object;
+public class Validation {
+	private Object object;
 
-	public Validation(T object) {
+	public Validation(Object object) {
 		this.object = object;
 	}
 
