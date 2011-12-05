@@ -6,7 +6,7 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ufpe.cin.rgms.Facade"%>
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
-
+#localeset()
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%><html>
 <head>
@@ -17,7 +17,7 @@
 <body>
 
 <div id="page">
-<div id="header"></div>
+<div id="header">#localemenu()</div>
 
 <div id="mainarea">
 <div id="sidebar">

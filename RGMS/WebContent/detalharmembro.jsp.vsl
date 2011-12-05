@@ -6,7 +6,7 @@
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
 <%@page import="br.ufpe.cin.rgms.membro.modelo.Estudante"%>
 <%@page import="br.ufpe.cin.rgms.publicacao.modelo.Publicacao"%>
-
+#localeset()
 <html>
 
 <% ServletContext servletContext = getServletContext(); %>
@@ -19,7 +19,7 @@
 <body>
 
 <div id="page">
-	<div id="header"></div>
+	<div id="header">#localemenu()</div>
 	
 	<div id="mainarea">
 	<div id="sidebar">

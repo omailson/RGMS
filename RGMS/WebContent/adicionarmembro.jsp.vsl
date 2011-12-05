@@ -5,7 +5,7 @@
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
 
 <% ServletContext servletContext = getServletContext(); %>
-
+#localeset()
 <html>
 
 <head>
@@ -16,7 +16,7 @@
 <body>
 
 <div id="page">
-	<div id="header"></div>
+	<div id="header">#localemenu()</div>
 	
 	<div id="mainarea">
 	<div id="sidebar">

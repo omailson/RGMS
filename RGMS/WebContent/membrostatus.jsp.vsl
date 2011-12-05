@@ -5,7 +5,7 @@
 <%@page import="br.ufpe.cin.rgms.util.Properties"%>
 
 <html>
-
+#localeset()
 <head>
 <title><%out.println(Properties.getProperty(this.getServletContext(),"time_pesquisa"));%></title>
 <LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
@@ -14,7 +14,7 @@
 <body>
 
 <div id="page">
-	<div id="header"></div>
+	<div id="header">#localemenu()</div>
 	
 	<div id="mainarea">
 	<div id="sidebar">
