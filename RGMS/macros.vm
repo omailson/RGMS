@@ -28,7 +28,7 @@
 
 #macro(localemenu)
 #if ($localizacao)
-#set($locales = [["en", "US"], ["pt", "BR"]])
+#set($locales = [["en", "US"], ["pt", "BR"], ["de", "DE"], ["fr", "FR"], ["it", "IT"], ["ar", "SA"], ["es", "ES"], ["jp", "JP"]])
 <ul id="localeselect">
 	#foreach($locale in $locales)
 	<li><a href="?language=${locale.get(0)}&country=${locale.get(1)}">${locale.get(0)}</a></li>
